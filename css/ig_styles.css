@@ -1,0 +1,101 @@
+@charset "UTF-8";
+body {
+	background:#fff url(../images/headerBackgroundTall.png) repeat-x left top;
+}
+#ig_results {
+	width:600px;
+	display:block;
+	margin:0px auto;
+	border:solid 1px #CCC;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	color:#333;
+	font-size:14px;
+	background:#fff;
+	-moz-border-radius:25px 25px 0px 0px;
+	-khtml-border-radius:25px 25px 0px 0px;
+	-webkit-border-radius:25px 25px 0px 0px;
+	border-radius:25px 25px 0px 0px;
+}
+#ig_results a {
+	color:#BD4A39;
+	text-decoration:none;
+}
+#ig_results a:hover {color:#F35F49;}
+#ig_results h2 {
+	padding:0px 15px;
+	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size:24px;
+}
+p.ig_feed_quantity {
+	padding:0px 15px;
+	font-weight:bold;
+	margin-bottom:1em;
+}
+p.ig_feed_quantity span.ig_instruct {
+	font-weight:normal;
+	font-size:12px;
+}
+div.ig_photo {
+	width:580px;
+	padding:0px 10px .5em 10px;
+	margin-bottom:.5em;
+	border-bottom:solid 1px #ccc;
+}
+#ig_results div.clear {
+	width:0px;
+	height:0px;
+	clear:both;
+	font-size:0px;
+	line-height:0px;
+	overflow:hidden;
+	visibility:hidden;
+}
+div.ig_photo_data_col, div.ig_thumb_col {
+	display:inline-block;
+	float:left;
+}
+div.ig_thumb_col {
+	width:150px;
+	padding-right:10px;
+}
+div.ig_thumb_col img {border:none;}
+div.ig_photo_data_col {
+	width:410px;
+	padding-left:10px;
+}
+div.ig_photo_data_col h5 {
+	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size:18px;
+	font-weight:normal;
+	color:#333;
+	margin-bottom:5px;
+}
+div.ig_photo_data_col li {
+	list-style-type:none;
+	margin-left:15px;
+}
+#ig_form {
+	display:block;
+	padding:.5em 10px .5em 180px;
+	width:410px;
+	color:#999;
+}
+#ig_form input.text, #ig_form input.submit {
+	padding:3px;
+	font-size:14px;
+	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+#ig_form input.text {
+	width:250px;
+	border:solid 1px #999;
+	color:#999;
+}
+#ig_form input.submit {
+	background:none;
+	border:none;
+	color:#BD4A39;
+}
+#ig_form input.submit:hover {
+	color:#F35F49;
+	cursor:pointer;
+}
