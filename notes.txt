@@ -1,9 +1,105 @@
-open -b com.google.chrome --args --allow-file-access-from-files
+********* Notes *********
+
+To open Chrome in a way that lets PHP write files:
+	open -b com.google.chrome --args --allow-file-access-from-files
+
+Open the site in browser:
+	http://mysite/index.html
+	http://mysite/index.html?hashtag=detroit&title=Nathan and Danielle's Wedding Slideshow&email=nathannantais@gmail.com&delay=5000
+www.slideshow.markcharko.com/index.html?hashtag=detroit&title=Nathan and Danielle's Wedding Slideshow&email=nathannantais@gmail.com&delay=5000
+
+or
+	http://mysite/index.html?hashtag=detroit&title=Nathan and Danielle's Wedding Slideshow&delay=5000
+	Email is optional
+
+Setting up web server on Mac so PHP will work:
+	http://php.about.com/od/phpbasics/ss/installMac.htm
+	http://www.procata.com/blog/archives/2007/10/28/working-with-php-5-in-mac-os-x-105/
+
+Permissions:
+	chmod 777 mysite/Images folder É any folder where the PHP will have to write
+
+Reading PHP errors:
+	tail -f -n 200 /var/log/apache2/error_log 
+
+Twitter search:
+	https://dev.twitter.com/docs/api/1/get/search (limit 150 
+	http://search.twitter.com/search.rss?q=detroit&result_type=recent&rpp=100
+	rpp = results per page, max 100
+	result_type = mixed: Include both popular and real time results in the response. OR recent: return only the most recent results in the response OR popular: return only the most popular results in the response.
+	show_user=true <- add user name to start of tweet like "n_c_n: tweet"
+	include_entities <- include a node called "entities," with images and whatnot
 
 
-PHP runs on the server, not in the browser, so you need to be running a server:
+http://cappelendesign.no/2010/04/tutorial-twitter-rss-feed-parser-in-pure-php/
 
-http://php.about.com/od/phpbasics/ss/installMac.htm
-http://www.procata.com/blog/archives/2007/10/28/working-with-php-5-in-mac-os-x-105/
 
-PHP files go in /Library/WebServer/Documents/
+
+********* TO DO *********
+
+X	make sure hashtag is present X
+X	save image to Images folder (1234567.jpg) 	X
+X	Write json info to 1234567.txt	X
+X	sort by epoch time	X
+X	save tweet to Images folder (meta data).. duplicate the Tweet image		
+X	download twitpic image profile image		X fuck it
+X	Switch to streaming API
+X	Update Instagram (writes to Images folder)		X
+X	É Twitter, email, etc write to Images folder		X
+X	Load all images from Images folder			X
+X	Sort by epoch					X
+X	Handle no internet connection			X
+X	Handle weird cases like metadata missing for image 	X
+X	Check that expanded URL contains one of the things we support	X
+X 	make Images/detroit and Images/ndwedding
+X	http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html
+X	Make it www.slideshow.markcharko.com/hastag?tag=ndwedding
+X	Add new Twitter search format
+X	Make caption font bigger for non-image tweets
+X	Add to github
+X	Fix caption size when loading non-cached images	
+
+Display something on front-end when update in progress
+Handle corrupt metadata	
+E-mail: get image and make metadata from sender and subject
+Hide thumbnails
+Center image
+Periodically change background color?
+Minimize what JSON data goes back to HTMLÉ keep track of which photos are new somehow.
+Delete metadata file is json is corruptÉ that way it will be re-written
+Test with different screen resolutions
+Make sure autoplay always worksÉ maybe set timerÉ if not playing, start playing
+ ^ or just take out any ability to pause
+Start with single image that says where to tweet or emailÉ generate it
+
+
+
+
+
+*** LATER / REVENUE ***
+Show ads, people can pay to remove them
+Pay to make it private
+Pay to have a custom page (like for a bar or restaurant)
+Pay to order event photos from shutterfly partnership.
+Mobile support
+
+Available for 12.99
+STREAMERIFIC.COM
+TAGSLIDER.COM
+FEEDSLIDER.COM
+SLIDEALIVE.COM
+HASHTANK.COM
+HASHTALES.COM
+TAGGFEED.COM
+BASHFEED.COM
+TAGSALIVE.COM
+SHOWSHABLE.COM
+TAGGBAGG.COM
+
+
+
+
+
+
+
+
