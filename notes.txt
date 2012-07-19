@@ -1,0 +1,9 @@
+open -b com.google.chrome --args --allow-file-access-from-files
+
+
+PHP runs on the server, not in the browser, so you need to be running a server:
+
+http://php.about.com/od/phpbasics/ss/installMac.htm
+http://www.procata.com/blog/archives/2007/10/28/working-with-php-5-in-mac-os-x-105/
+
+PHP files go in /Library/WebServer/Documents/

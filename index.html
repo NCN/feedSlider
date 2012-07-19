@@ -27,7 +27,7 @@
 				<!-- Start Advanced Gallery Html Containers -->
 				<div id="gallery" class="content">
 					<div id="controls" class="controls"></div>
-					<div class="slideshow-container">
+					<div class="slideshow-container" id="slideshow-container">
 						<div id="loading" class="loader"></div>
 						<div id="slideshow" class="slideshow"></div>
 						<div id="caption" class="caption-container"></div>
@@ -38,42 +38,33 @@
 				</div>
 				<div id="thumbs" class="navigation">
 					<ul class="thumbs noscript">
-                        <li>
+                        <!--<li>
 							<a class="thumb" name="leaf" href="Images_perm/_MG_9480.jpg" title="">
 								<img src="Images_perm/thumb.jpg" alt="" />
 							</a>
 							<div class="caption">
-								<!--<div class="download">
-									<a href="http://farm4.static.flickr.com/3261/2538183196_8baf9a8015_b.jpg">Download Original</a>
-								</div>-->
 								<div class="image-title">Nathan &amp; Danielle's Engagement</div>
 								<div class="image-desc">Charleston, South Carolina</div>
 							</div>
-						</li>
+						</li>-->
                         <li>
 							<a class="thumb" name="leaf" href="Images_perm/_MG_9479.jpg" title="">
 								<img src="Images_perm/thumb.jpg" alt="" />
 							</a>
 							<div class="caption">
-								<!--<div class="download">
-									<a href="http://farm4.static.flickr.com/3261/2538183196_8baf9a8015_b.jpg">Download Original</a>
-								</div>-->
 								<div class="image-title">Nathan &amp; Danielle's Engagement</div>
 								<div class="image-desc">Charleston, South Carolina</div>
 							</div>
 						</li>
-                        <li>
+                        <!--<li>
 							<a class="thumb" name="leaf" href="Images_perm/_MG_9503.jpg" title="">
 								<img src="Images_perm/thumb.jpg" alt="" />
 							</a>
 							<div class="caption">
-								<!--<div class="download">
-									<a href="http://farm4.static.flickr.com/3261/2538183196_8baf9a8015_b.jpg">Download Original</a>
-								</div>-->
 								<div class="image-title">Nathan &amp; Danielle's Engagement</div>
 								<div class="image-desc">Charleston, South Carolina</div>
 							</div>
-						</li>
+						</li>-->
 						<!--<li>
 							<a class="thumb" name="leaf" href="http://farm4.static.flickr.com/3261/2538183196_8baf9a8015.jpg" title="Title #0">
 								<img src="http://farm4.static.flickr.com/3261/2538183196_8baf9a8015_s.jpg" alt="Title #0" />
@@ -446,7 +437,7 @@
 				var gallery = $('#thumbs').galleriffic({
 					delay:                     delay, <!--3500,-->
 					numThumbs:                 18, <!-- NCN .. was 15 -->
-					preloadAhead:              10,
+					preloadAhead:              -1,
 					enableTopPager:            true,
 					enableBottomPager:         false,
 					maxPagesToShow:            7,

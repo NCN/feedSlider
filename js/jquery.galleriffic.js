@@ -351,6 +351,12 @@
                     
                     image.height = newHeight;
                     image.width = newWidth;
+                    
+                    // Resize caption
+                    d = document.getElementById('current-caption');
+                    d.style.width=newWidth;
+                    d.style.bottom = '0px';
+                    d.style.left = (550 - newWidth)/2 +'px';
 
 				};
 
@@ -638,6 +644,12 @@
 
                         image.height = newHeight;
                         image.width = newWidth;
+                        
+                        // Resize caption
+                        d = document.getElementById('current-caption');
+                        d.style.width=newWidth;
+                        d.style.bottom = '0px';
+                        d.style.left = (550 - newWidth)/2 + 1 +'px';
 					};
 
 					// set alt and src
@@ -681,13 +693,13 @@
                     
                     if (filename.indexOf("no_pic") == -1) {
                         newCaption = this.$captionContainer
-                            .append('<span class="image-caption current"></span>')
+                            .append('<span class="image-caption current" id="current-caption"></span>')
                             .find('span.current').css('opacity', '0')
                             .append(imageData.caption);
                     }
                     else { // For no pic - bigger text
                         newCaption = this.$captionContainer
-                            .append('<span class="image-caption-large current"></span>')
+                            .append('<span class="image-caption-large current" id="current-caption"></span>')
                             .find('span.current').css('opacity', '0')
                             .append(imageData.caption);
                     }
