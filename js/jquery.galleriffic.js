@@ -352,12 +352,11 @@
                     image.height = newHeight;
                     image.width = newWidth;
                     
-                    // Resize caption
-                    d = document.getElementById('current-caption');
-                    d.style.width=newWidth;
-                    d.style.bottom = '0px';
-                    d.style.left = (550 - newWidth)/2 +'px';
-
+                    // Resize caption based on width of container and width of image
+                    cap = document.getElementById('current-caption');
+                    cap.style.width=newWidth;
+                    cap.style.bottom = '0px';
+                    cap.style.left = ($("#gallery").width() - newWidth)/2 + 2 +'px';
 				};
 
 				image.alt = imageData.title;
@@ -645,11 +644,15 @@
                         image.height = newHeight;
                         image.width = newWidth;
                         
-                        // Resize caption
-                        d = document.getElementById('current-caption');
-                        d.style.width=newWidth;
-                        d.style.bottom = '0px';
-                        d.style.left = (550 - newWidth)/2 + 1 +'px';
+                        // Resize caption based on width of container and width of image
+                        var gal = document.getElementById('gallery');
+                        var galwidth = gal.style.width; // width of gallery in pixels
+                        console.log($("#gallery").width());
+                        
+                        cap = document.getElementById('current-caption');
+                        cap.style.width = newWidth;
+                        cap.style.bottom = '0px';
+                        cap.style.left = ($("#gallery").width() - newWidth)/2 + 2 +'px';
 					};
 
 					// set alt and src

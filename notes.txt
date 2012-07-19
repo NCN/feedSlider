@@ -58,10 +58,14 @@ X	Add new Twitter search format
 X	Make caption font bigger for non-image tweets
 X	Add to github
 X	Fix caption size when loading non-cached images	
+X	Instead of hard-coding 550px into js, get width property of the div 
 
 Display something on front-end when update in progress
-Handle corrupt metadata	
+Handle corrupt metadata
 E-mail: get image and make metadata from sender and subject
+ http://davidwalsh.name/gmail-php-imap
+ http://www.electrictoolbox.com/extract-attachments-email-php-imap/
+ http://www.linuxscope.net/articles/mailAttachmentsPHP.html
 Hide thumbnails
 Center image
 Periodically change background color?
@@ -95,6 +99,34 @@ BASHFEED.COM
 TAGSALIVE.COM
 SHOWSHABLE.COM
 TAGGBAGG.COM
+
+
+
+
+
+
+
+
+*** HTML NOTES ***
+
+Determining caption size:
+
+Slideshow-container
+width: 550px
+
+Caption
+width: 333px
+bottom: 0px
+left: 110px
+
+Image:
+width: 333
+
+Calculating caption 'left:' coordinate:
+(550-333) / 2 + 1 = 110
+
+
+
 
 
 
