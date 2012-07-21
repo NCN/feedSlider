@@ -67,12 +67,13 @@ X	Responsive design
 X	No title
 X	Float footer from bottom like Phil suggested
 X	Responsive image sizing
+X	Fade in doesn't work because I made span.image-wrapper no longer position absolute
+X	Get transparent loading image
+X	Investigate what preload does… set to preload all
 
-Display something on front-end when update in progress
-Get transparent loading image
 Base font on em so it scales with screen?
-Fade in doesn't work because current image is being created below previous on screen !! :(
-Investigate what preload does… set to preload all
+
+Handle 'Failed to load resource' image
 Handle corrupt metadata
 E-mail: get image and make metadata from sender and subject
  http://davidwalsh.name/gmail-php-imap
@@ -89,6 +90,7 @@ Make sure autoplay always works… maybe set timer… if not playing, start playing
 
 
 *** LATER / REVENUE ***
+Display something on front-end when update in progress
 Show ads, people can pay to remove them
 Pay to make it private
 Pay to have a custom page (like for a bar or restaurant)
@@ -111,7 +113,9 @@ TAGGBAGG.COM
 
 
 
-
+*** EMAIL ***
+ndwedpics
+wedding1234
 
 
 
@@ -176,3 +180,10 @@ div.slideshow a.advance-link {
 
 
 
+***** GIT ******
+git status
+git add filename
+git commit -m "comment"
+git push origin master  # push to github
+ncn
+nathan424

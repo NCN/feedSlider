@@ -167,7 +167,7 @@
 				var gallery = $('#thumbs').galleriffic({
 					delay:                     delay, <!--3500,-->
 					numThumbs:                 18, <!-- NCN .. was 15 -->
-					preloadAhead:              0, <!-- -1 = all -->
+					preloadAhead:              -1, <!-- -1 = all -->
 					enableTopPager:            false,
 					enableBottomPager:         false,
 					maxPagesToShow:            7,
@@ -363,10 +363,12 @@
                 console.log(email);
 
                 if (email == undefined) {
-                    $('h2#description').replaceWith('<h2 id="description">Twitter or Instagram: #' + unescape(hashtag) + '.</h2>');  
+                    //$('h2#description').replaceWith('<h2 id="description">Twitter or Instagram: #' + unescape(hashtag) + '</h2>');  
+                    $('h2#description').replaceWith('<h2 id="description">Add photos to the slideshow: Twitter or Instagram #' + unescape(hashtag) + '</h2>');  
                 }
                 else {
-                    $('h2#description').replaceWith('<h2 id="description">Twitter or Instagram: #' + unescape(hashtag) + ' | e-mail pics to ' + unescape(email) + '</h2>');  
+                    //$('h2#description').replaceWith('<h2 id="description">Twitter or Instagram: #' + unescape(hashtag) + ' | e-mail pics to ' + unescape(email) + '</h2>');  
+                    $('h2#description').replaceWith('<h2 id="description">Add photos to the slideshow: Twitter or Instagram #' + unescape(hashtag) + ', or e-mail pics to ' + unescape(email) + '</h2>');  
                 }
                 
                 //var descr = getUrlVars()["title"];

@@ -66,7 +66,7 @@
 	var defaults = {
 		delay:                     3000,
 		numThumbs:                 20,
-		preloadAhead:              -1, // Set to -1 to preload all images
+		preloadAhead:              0, // Set to -1 to preload all images
 		enableTopPager:            false,
 		enableBottomPager:         true,
 		maxPagesToShow:            7,
@@ -356,10 +356,10 @@
                     image.width = newWidth;
                     
                     // Resize caption based on width of container and width of image
-                    //cap = document.getElementById('current-caption');
-                    //cap.style.width=newWidth;
-                    //cap.style.bottom = '0px';
-                    //cap.style.left = ($("#gallery").width() - newWidth)/2 + 2 +'px';
+                    cap = document.getElementById('current-caption');
+                    cap.style.width=newWidth;
+                    cap.style.bottom = -1*newHeight - 4;
+                    cap.style.left = ($("#gallery").width() - newWidth)/2 + 5 +'px';
 
 				};
 
@@ -649,10 +649,10 @@
                         image.width = newWidth;
                         
                         // Resize caption based on width of container and width of image
-                        //cap = document.getElementById('current-caption');
-                        //cap.style.width=newWidth;
-                        //cap.style.bottom = '0px';
-                        //cap.style.left = ($("#gallery").width() - newWidth)/2 + 2 +'px';
+                        cap = document.getElementById('current-caption');
+                        cap.style.width=newWidth;
+                        cap.style.bottom = -1*newHeight - 4;
+                        cap.style.left = ($("#gallery").width() - newWidth)/2 + 5 +'px';
 
 					};
 

@@ -47,8 +47,8 @@ div.slideshow a.advance-link {
 div#description_div {
     position: absolute; 
     bottom: 5px; 
-    width: 98%; 
-    left: 0%; 
+    width: 96%; 
+    left: 1.5%; /* seems to center it */
     background: #252525; 
     color: #fff; 
     opacity: 0.65; 
