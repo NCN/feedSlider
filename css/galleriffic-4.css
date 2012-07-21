@@ -15,20 +15,23 @@ div.content {
     top:5%;
     width: 100%; /* width of the actual slideshow area */ /* was 550 .. then was 800px;*/
     left: 0%; 
+	padding: 0px;
 }
 div.slideshow-container {
 	position: relative;
 	clear: both;
     width: 100%;
+	padding: 0px;
 	/*height: 550px;  was 502 This should be set to be at least the height of the largest image in the slideshow */
 }
 div.slideshow {
 
 }
 div.slideshow span.image-wrapper {
-	/*display: block;
+	display: block;
 	position: absolute;
-	top: 0;
+	padding: 0px;
+	/*top: 0;
 	left: 0;*/
 }
 div.slideshow a.advance-link {
@@ -64,7 +67,7 @@ div.controls {
 	height: 23px;
 }
 div.controls a {
-	padding: 5px;
+	padding: 0px;
 }
 div.ss-controls {
 	float: left;

@@ -37,7 +37,7 @@
                             <img src="Images_perm/thumb.jpg" alt="" />
                         </a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a class="thumb" name="leaf" href="Images_perm/_MG_2115_small.jpg" title="">
                             <img src="Images_perm/thumb.jpg" alt="" />
                         </a>
@@ -106,7 +106,7 @@
                         <a class="thumb" name="leaf" href="Images_perm/_MG_9607.jpg" title="">
                             <img src="Images_perm/thumb.jpg" alt="" />
                         </a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
             <!-- End Advanced Gallery Html Containers -->
@@ -210,10 +210,11 @@
 						var slideImage = slide.find('img');
 						caption.width(slideImage.width())
 							.css({
-								//'bottom' : Math.floor((slide.height() - slideImage.outerHeight()) / 2),
+								'bottom' : Math.floor((slide.height() - slideImage.outerHeight()) / 2),
 								//'left' : Math.floor((slide.width() - slideImage.width()) / 2) + slideImage.outerWidth() - slideImage.width()
-                                'bottom': '0px',
-                                'left': ($(window).width() - slideImage.width())/2 + 2
+                                'bottom': -1* slideImage.height() - 4,
+                                'left': ($(window).width() - slideImage.width())/2 + 5,
+                                'width': slideImage.width()
 							})
 							.fadeTo(duration, captionOpacity);
 					},

@@ -11,7 +11,7 @@
 	// Globally keep track of all images by their unique hash.  Each item is an image data object.
 	var allImages = {};
 	var imageCounter = 0;
-
+    
 	// Galleriffic static class
 	$.galleriffic = {
 		version: '2.0.1',
@@ -686,6 +686,24 @@
 					.click(function(e) {
 						gallery.clickHandler(e, this);
 					});
+                    
+
+                
+                // Move image to center (need to do this because span has to have absolute position for image fadin / fadeout to work, and
+                // to avoid the problem where two spans are shown at once on top of each other
+                var origWidth = imageData.image.width;
+                var origHeight = imageData.image.height;
+                var newHeight = maxHeight;
+                var newWidth = parseInt((parseInt(origWidth) * parseInt(newHeight) / parseInt(origHeight)));
+                
+                if (newWidth > maxWidth) {
+                    newWidth = maxWidth;
+                    newHeight = parseInt((parseInt(origHeight) * parseInt(newWidth) / parseInt(origWidth)));
+                }
+                
+                this.$imageContainer.find('span.current').css('left', ($(window).width() - newWidth)/2 +'px');
+                
+
 				
 				var newCaption = 0;
 				if (this.$captionContainer) {
