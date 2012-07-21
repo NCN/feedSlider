@@ -59,23 +59,31 @@ X	Make caption font bigger for non-image tweets
 X	Add to github
 X	Fix caption size when loading non-cached images	
 X	Instead of hard-coding 550px into js, get width property of the div 
+X	Hide thumbnails
+X	Center image
+X	Change the caption size after the image has faded in… because when going from portrait to square image the caption is too wide. <- or just dissapear caption when fadeout begins and reappear it when fadein done
+X	Periodically change background color?
+X	Responsive design
+X	No title
+X	Float footer from bottom like Phil suggested
+X	Responsive image sizing
 
 Display something on front-end when update in progress
+Get transparent loading image
+Base font on em so it scales with screen?
+Fade in doesn't work because current image is being created below previous on screen !! :(
+Investigate what preload does… set to preload all
 Handle corrupt metadata
 E-mail: get image and make metadata from sender and subject
  http://davidwalsh.name/gmail-php-imap
  http://www.electrictoolbox.com/extract-attachments-email-php-imap/
  http://www.linuxscope.net/articles/mailAttachmentsPHP.html
-Hide thumbnails
-Center image
-Periodically change background color?
 Minimize what JSON data goes back to HTML… keep track of which photos are new somehow.
 Delete metadata file is json is corrupt… that way it will be re-written
-Test with different screen resolutions
+Test on flatscreen TV
 Make sure autoplay always works… maybe set timer… if not playing, start playing
  ^ or just take out any ability to pause
-Start with single image that says where to tweet or email… generate it
-
+"Post to Twitter or Instagram with #hastag to add photos to slideshow"
 
 
 
@@ -86,6 +94,7 @@ Pay to make it private
 Pay to have a custom page (like for a bar or restaurant)
 Pay to order event photos from shutterfly partnership.
 Mobile support
+Start with single image that says where to tweet or email… generate it
 
 Available for 12.99
 STREAMERIFIC.COM
@@ -126,8 +135,40 @@ Calculating caption 'left:' coordinate:
 (550-333) / 2 + 1 = 110
 
 
+** Adjusting image size: **
 
+jquery.galleriffic.js:
+    var scaleHeight = 500;
+    var maxWidth = 700;
 
+css:
+div.content {
+	/* The display of content is enabled using jQuery so that the slideshow content won't display unless javascript is enabled. */
+	display: none;
+    margin-left:auto;
+    margin-right:auto;
+	/*float: right;*/
+	width: 800px; /* width of the actual image area */ /* was 550 */
+}
+
+div.loader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url('loader.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 800px; /* was 550 */
+	height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */
+}
+
+div.slideshow a.advance-link {
+	display: block;
+	width: 800px; /* was 550 */
+	height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */
+	line-height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */
+	text-align: center;
+}
 
 
 

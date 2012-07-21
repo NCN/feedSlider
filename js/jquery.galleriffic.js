@@ -12,11 +12,6 @@
 	var allImages = {};
 	var imageCounter = 0;
 
-    // NCN from web: This is our modification ******
-    // scales the width when the original is less than this scaleHeight
-    var scaleHeight = 500;
-    var maxWidth = 500;
-
 	// Galleriffic static class
 	$.galleriffic = {
 		version: '2.0.1',
@@ -71,7 +66,7 @@
 	var defaults = {
 		delay:                     3000,
 		numThumbs:                 20,
-		preloadAhead:              40, // Set to -1 to preload all images
+		preloadAhead:              -1, // Set to -1 to preload all images
 		enableTopPager:            false,
 		enableBottomPager:         true,
 		maxPagesToShow:            7,
@@ -103,6 +98,14 @@
 
 	// Primary Galleriffic initialization function that should be called on the thumbnail container.
 	$.fn.galleriffic = function(settings) {
+    
+        // NCN from web: This is our modification ******
+        // scales the width when the original is less than this maxHeight
+        var maxHeight = $(window).height() * 0.82; // 550; // 502 in css -> 493 here (9)... 530px css -> 
+        var maxWidth = $(window).width() * 0.9; // 550; // 502 in css -> 493 here (9)... 530px css -> 
+        console.log('maxHeight = ' + maxHeight + ', maxWidth = ' + maxWidth);
+        //var maxWidth = 750;
+
 		//  Extend Gallery Object
 		$.extend(this, {
 			// Returns the version of the script
@@ -341,7 +344,7 @@
                     // NCN Code from the web for resizing images
                     var origWidth = image.width;
                     var origHeight = image.height;
-                    var newHeight = scaleHeight;
+                    var newHeight = maxHeight;
                     var newWidth = parseInt((parseInt(origWidth) * parseInt(newHeight) / parseInt(origHeight)));
                     
                     if (newWidth > maxWidth) {
@@ -353,10 +356,11 @@
                     image.width = newWidth;
                     
                     // Resize caption based on width of container and width of image
-                    cap = document.getElementById('current-caption');
-                    cap.style.width=newWidth;
-                    cap.style.bottom = '0px';
-                    cap.style.left = ($("#gallery").width() - newWidth)/2 + 2 +'px';
+                    //cap = document.getElementById('current-caption');
+                    //cap.style.width=newWidth;
+                    //cap.style.bottom = '0px';
+                    //cap.style.left = ($("#gallery").width() - newWidth)/2 + 2 +'px';
+
 				};
 
 				image.alt = imageData.title;
@@ -633,7 +637,7 @@
                         // NCN Code from the web for resizing images
                         var origWidth = image.width;
                         var origHeight = image.height;
-                        var newHeight = scaleHeight;
+                        var newHeight = maxHeight;
                         var newWidth = parseInt((parseInt(origWidth) * parseInt(newHeight) / parseInt(origHeight)));
                     
                         if (newWidth > maxWidth) {
@@ -645,14 +649,11 @@
                         image.width = newWidth;
                         
                         // Resize caption based on width of container and width of image
-                        var gal = document.getElementById('gallery');
-                        var galwidth = gal.style.width; // width of gallery in pixels
-                        console.log($("#gallery").width());
-                        
-                        cap = document.getElementById('current-caption');
-                        cap.style.width = newWidth;
-                        cap.style.bottom = '0px';
-                        cap.style.left = ($("#gallery").width() - newWidth)/2 + 2 +'px';
+                        //cap = document.getElementById('current-caption');
+                        //cap.style.width=newWidth;
+                        //cap.style.bottom = '0px';
+                        //cap.style.left = ($("#gallery").width() - newWidth)/2 + 2 +'px';
+
 					};
 
 					// set alt and src

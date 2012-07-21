@@ -5,7 +5,7 @@ html, body {
 body{
 	text-align: center;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
-	background-color: #eee;
+	background-color: #000000; /* was fff */
 	color: #444;
 	font-size: 75%;
 }
@@ -25,13 +25,16 @@ h1, h2 {
 	letter-spacing:-1px;
 }
 h1 {
-	padding: 0;
+	padding-top: 10px;
 	font-size: 3em;
-	color: #333;
+    /*font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;*/
+	color: #909090; /* was #333 */
 }
 h2 {
-	padding-top: 10px;
+	padding-top: 0px;
 	font-size:2em;
+    /*font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;*/
+	color: #909090; /* was #333 */
 }
 pre {
 	font-size: 1.2em;
@@ -39,16 +42,13 @@ pre {
 	overflow-x: auto;
 }
 div#page {
-	width: 900px;
-	background-color: #fff;
+	width: 99%; /* was 900px */
+	background-color: #191919; /* was fff */
 	margin: 0 auto;
 	text-align: left;
-	border-color: #ddd;
-	border-style: none solid solid;
-	border-width: medium 1px 1px;
-}
-div#container {
-	padding: 20px;
+	/*border-color: #ddd; 
+    border-style: none solid solid;
+	border-width: medium 1px 1px;  NCN comment out */
 }
 div#ads {
 	clear: both;
@@ -60,4 +60,11 @@ div#footer {
 	margin: 0 auto;
 	padding: 20px 0 40px;
 	text-align: center;
+}
+/*div#description_div {
+	clear: both;
+	color: #777;
+	margin: 0 auto;
+	padding: 20px 0 0px;
+	text-align: center;*/
 }
