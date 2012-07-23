@@ -336,8 +336,14 @@
 				
 				// Preload the image
 				var image = new Image();
+
+				image.onerror = function() {
+                    console.log("image.onerror");
+                    window.location.reload(true); // refresh page
+                }
 				
 				image.onload = function() {
+                    console.log("image.onload");
 					imageData.image = this;
 					gallery.preloadNext(startIndex, currentIndex);
 
@@ -405,7 +411,7 @@
 
 			// Pauses the slideshow
 			pause: function() {
-				this.isSlideshowRunning = false;
+				/*this.isSlideshowRunning = false;
 				if (this.slideshowTimeout) {
 					clearTimeout(this.slideshowTimeout);
 					this.slideshowTimeout = undefined;
@@ -417,7 +423,7 @@
 						.attr('title', this.playLinkText)
 						.attr('href', '#play')
 						.html(this.playLinkText);
-				}
+				}*/
 				
 				return this;
 			},
@@ -625,8 +631,14 @@
 				if (!imageData.image) {
 					var image = new Image();
 					
+                    image.onerror = function() {
+                        console.log("image.onerror");
+                        window.location.reload(true); // refresh page
+                    }
+
 					// Wire up mainImage onload event
 					image.onload = function() {
+                        console.log("image.onload");
 						imageData.image = this;
 
 						// Only build image if the out transition has completed and we are still on the same image hash

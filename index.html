@@ -113,7 +113,7 @@
 
             <!--<div style="clear: both;"></div>-->
             <div id="description_div">
-                <h2 id="description">Twitter or Instagram: #hashtag. e-mail pics to email@gmail.com</h2>
+                <h2 id="description">Twitter or Instagram: #hashtag. email photo to email@gmail.com</h2>
             </div>
         </div>
         
@@ -167,7 +167,7 @@
 				var gallery = $('#thumbs').galleriffic({
 					delay:                     delay, <!--3500,-->
 					numThumbs:                 18, <!-- NCN .. was 15 -->
-					preloadAhead:              -1, <!-- -1 = all -->
+					preloadAhead:              0, <!-- -1 = all -->
 					enableTopPager:            false,
 					enableBottomPager:         false,
 					maxPagesToShow:            7,
@@ -359,8 +359,15 @@
                 hashtag = getUrlVars()["hashtag"];
                 console.log(hashtag);
 
-                var email = getUrlVars()["email"];
+                email = getUrlVars()["email"];
                 console.log(email);
+
+                password = getUrlVars()["password"];
+                console.log(password);
+                
+                if ((hashtag == undefined) || (email == undefined) || (password == undefined)) {
+                    alert("Arguments: &hashtag= &email= [optional] &password= [optional]" );
+                }
 
                 if (email == undefined) {
                     //$('h2#description').replaceWith('<h2 id="description">Twitter or Instagram: #' + unescape(hashtag) + '</h2>');  
@@ -368,7 +375,7 @@
                 }
                 else {
                     //$('h2#description').replaceWith('<h2 id="description">Twitter or Instagram: #' + unescape(hashtag) + ' | e-mail pics to ' + unescape(email) + '</h2>');  
-                    $('h2#description').replaceWith('<h2 id="description">Add photos to the slideshow: Twitter or Instagram #' + unescape(hashtag) + ', or e-mail pics to ' + unescape(email) + '</h2>');  
+                    $('h2#description').replaceWith('<h2 id="description">Add photos to the slideshow: Twitter or Instagram #' + unescape(hashtag) + ', or email photo to ' + unescape(email) + '</h2>');  
                 }
                 
                 //var descr = getUrlVars()["title"];
@@ -396,6 +403,8 @@
                 ajax.element = 'my_messages'; // Remove to make a simple "ping" type of request
                 ajax.requestFile = "imageFetch.php";
                 ajax.setVar("hashtag",hashtag); // pass hashtag variable to PHP
+                ajax.setVar("email",email); // pass hashtag variable to PHP
+                ajax.setVar("password",password); // pass hashtag variable to PHP
                 //ajax.setVar("other_variables","hello world");
                 ajax.onCompletion = whenCompleted;
                 ajax.onError = whenError;
@@ -404,6 +413,7 @@
 
                 function whenCompleted(){
                     console.log(' fetched json results -- ' + ajax.response.length + ' characters');
+                    console.log(ajax.response);
                     image_fetch_running = 0;
                     if (ajax.response.length > 0) {
                         if (ajax.response.length < 10) {

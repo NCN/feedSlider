@@ -16,6 +16,12 @@ set_time_limit(300); // 5 minutes timeout time
 $hashtag=$_GET['hashtag'];
 error_log("Get images for #".$hashtag);
 
+$email=$_GET['email'];
+error_log("Get images from email ".$email);
+
+$pass=$_GET['password'];
+error_log(" password ".$pass);
+
 $origurl = "";
 
 // Create Images/hashtag folder to save all images
@@ -151,6 +157,16 @@ if ( !function_exists( 'esc_html' ) ) {
  
         return $html;
     }
+}
+
+function clean_filename($filename) {
+
+    $bad = array_merge(
+            array_map('chr', range(0,31)),
+            array("<", ">", ":", '"', "/", "\\", "|", "?", "*"));
+    $result = str_replace($bad, "", $filename);
+    
+    return $result;
 }
 
 function parse_html($htmlurl) {
@@ -319,13 +335,16 @@ function get_tweets() {
                 // **************************************************
                 //$url = 'http://example.com/image.php';
                 
-                $local_filename="Images/".$hashtag."/".$author."-".$epoch;
+                $filename_string = $author."-".$epoch; // Form file string
+                $filename_string = clean_filename($filename_string); // Clean bad characters
                 
-                $img_local_pic = "Images/".$hashtag."/".$author."-".$epoch.'.jpg'; // @ncn-1234567.jpg
-                $meta_data_local_pic = "Images/".$hashtag."/".$author."-".$epoch.".txt"; // @ncn-1234567.txt
+                $local_filename="Images/".$hashtag."/".$filename_string;
+                
+                $img_local_pic = "Images/".$hashtag."/".$filename_string.'.jpg'; // @ncn-1234567.jpg
+                $meta_data_local_pic = "Images/".$hashtag."/".$filename_string.".txt"; // @ncn-1234567.txt
 
-                $img_local_no_pic = "Images/".$hashtag."/no_pic_".$author."-".$epoch.'.jpg'; // @ncn-1234567.jpg
-                $meta_data_local_no_pic = "Images/".$hashtag."/no_pic_".$author."-".$epoch.".txt"; // @ncn-1234567.txt
+                $img_local_no_pic = "Images/".$hashtag."/no_pic_".$filename_string.'.jpg'; // @ncn-1234567.jpg
+                $meta_data_local_no_pic = "Images/".$hashtag."/no_pic_".$filename_string.".txt"; // @ncn-1234567.txt
 
                 if ((!file_exists($img_local_pic)) && (!file_exists($img_local_no_pic))) { // Only do any of this stuff if we havent already saved this Tweet
 
@@ -470,7 +489,12 @@ function get_instagram_photos() {
                 // DOWNLOAD IMAGE FILE AND SAVE LOCALLY IF IT IS NEW
                 // **************************************************
                 //$url = 'http://example.com/image.php';
-                $img_local = 'Images/'.$hashtag.'/'.basename($id);
+                
+                $filename_string = basename($id);
+                $filename_string = clean_filename($filename_string);
+                
+                $img_local = "Images/".$hashtag."/".$filename_string;
+                
                 if (!file_exists($img_local)) {
                     // Download image file
                     file_put_contents($img_local, file_get_contents($id));
@@ -487,14 +511,13 @@ function get_instagram_photos() {
                 $mf->setdate($date);
                 $mf->setepochtime(strval($timeadjusted));
 
-                //$fileobjects[] = $mf; // Insert this object into the array of objects
-                
                 $info = pathinfo($id);
-                $file_name_without_extension =  'Images/'.$hashtag.'/'.basename($id,'.'.$info['extension']);
-                $meta_data_local=$file_name_without_extension.".txt";
+                $filename_string = basename($id,'.'.$info['extension']); // Remove extension
+                $filename_string = clean_filename($filename_string); // Clean of bad characters
+                $meta_data_local="Images/".$hashtag."/".$filename_string.".txt";
+                
                 if (!file_exists($meta_data_local)) {
                     // Download image file
-    //                file_put_contents($meta_data_local, $mf);
                     $fp = fopen($meta_data_local, 'w'); // Open meta-data file for writing
                     fwrite($fp, json_encode($mf)); // Write json encoded meta data
                     fclose($fp);
@@ -518,11 +541,198 @@ function get_instagram_photos() {
 
 
 
+function get_emails() {
+    GLOBAL $email;
+    GLOBAL $pass;
+    GLOBAL $hashtag;
+    
+    if (($email === null) || ($pass === null)) {
+        // No email address or password
+        return;
+    }
+
+    /* connect to gmail */
+    $hostname = '{imap.gmail.com:993/imap/ssl/novalidate-cert}INBOX';
+    $username = $email; //'ndwedpics@gmail.com';
+    $password = $pass; //'wedding1234';
+
+    /* try to connect */
+    //$connection = imap_open($hostname,$username,$password) or die('Cannot connect to Gmail: ' . imap_last_error());
+    if (!$connection = imap_open($hostname,$username,$password)) {
+        // Error
+        error_log("imap_open(".$hostname.",".$username.",".$password.") failed, with error: ".imap_last_error());
+        return;
+    }
+
+    /* count emails */
+    $count = imap_num_msg($connection);
+
+    function decode_utf8($str) {
+       preg_match_all("/=\?UTF-8\?B\?([^\?]+)\?=/i",$str, $arr);
+            
+       for ($i=0;$i<count($arr[1]);$i++){
+         $str=ereg_replace(ereg_replace("\?","\?",
+                  $arr[0][$i]),base64_decode($arr[1][$i]),$str);
+       }
+            return $str;
+    }
+
+    for($message_number = 1; $message_number <= $count; $message_number++) {
+        $header = imap_headerinfo($connection, $message_number);
+        
+        // Look at unread emails only
+        //if($header->Unseen == 'U') {
+            //echo "Message ".$message_number." is unread<br>";
+
+            $raw_body = imap_body($connection, $message_number);
+            $structure = imap_fetchstructure($connection, $message_number);
+            
+            // Get sender
+            if (isset($header->from[0]->personal)) { 
+                $sender = $header->from[0]->personal; 
+            } else { 
+                $sender = $header->from[0]->mailbox; 
+            } 
+            //echo "<br>".$sender."<br>";
+
+            // Get subject
+            $subject = decode_utf8($header->subject);
+            //echo $subject."<br>";
+            
+            // Get date time
+            $date = date('Y-m-d H:i:s', $header->udate); 
+            //$date = $header->udate; 
+            $epoch = strtotime($date); // Convert date to epoch
+            $timeadjusted=intval($epoch);// - 4*60*60; // Somehow corrects it to EST... I think Instagrams date times are messed up
+            $date=date("Y-m-d H:i:s",$timeadjusted); // Build human-readable date in EST
+            //echo $date."<br>";
+
+            
+            // Search for attachments
+            $attachments = array();
+            if(isset($structure->parts) && count($structure->parts)) {
+                
+                for($i = 0; $i < count($structure->parts); $i++) {
+
+                    $attachments[$i] = array(
+                        'is_attachment' => false,
+                        'filename' => '',
+                        'name' => '',
+                        'attachment' => ''
+                    );
+                    
+                    if($structure->parts[$i]->ifdparameters) {
+                        foreach($structure->parts[$i]->dparameters as $object) {
+                            if(strtolower($object->attribute) == 'filename') {
+                                $attachments[$i]['is_attachment'] = true;
+                                $attachments[$i]['filename'] = $object->value;
+                            }
+                        }
+                    }
+                    
+                    if($structure->parts[$i]->ifparameters) {
+                        foreach($structure->parts[$i]->parameters as $object) {
+                            if(strtolower($object->attribute) == 'name') {
+                                $attachments[$i]['is_attachment'] = true;
+                                $attachments[$i]['name'] = $object->value;
+                            }
+                        }
+                    }
+                    
+                    if($attachments[$i]['is_attachment']) {
+                        $attachments[$i]['attachment'] = imap_fetchbody($connection, $message_number, $i+1);
+                        if($structure->parts[$i]->encoding == 3) { // 3 = BASE64
+                            $attachments[$i]['attachment'] = base64_decode($attachments[$i]['attachment']);
+                        }
+                        elseif($structure->parts[$i]->encoding == 4) { // 4 = QUOTED-PRINTABLE
+                            $attachments[$i]['attachment'] = quoted_printable_decode($attachments[$i]['attachment']);
+                        }
+                    }
+                }
+            }
+            
+            foreach($attachments as $part) {
+                if($part['is_attachment']) {
+                
+                    // Get attachment name
+                    $filename=$part['filename'];
+                    //echo $filename."<br>";
+                    
+                    // Get extension
+                    $extension = substr(strrchr($filename, '.'), 1);
+                    //echo $extension."<br>";
+
+                    // Check is extension is JPG JPEG PNG GIF
+                    if(
+                    (!(stristr($extension, 'png') === FALSE)) ||
+                    (!(stristr($extension, 'jpg') === FALSE)) ||
+                    (!(stristr($extension, 'jpeg') === FALSE)) ||
+                    (!(stristr($extension, 'gif') === FALSE))
+                    )
+                    {
+                        //echo "File was an image"."<br>";
+                                        
+                        // Build the local file name we will save to
+                        $local_filename = $sender."_".$subject."_".$date; // Form name
+                        $local_filename = clean_filename($local_filename); // Remove bad characters
+                        $local_filename = "Images/".$hashtag."/".$local_filename; // Add path
+                        $local_filename = str_replace(' ', '_', $local_filename);
+                        
+                        $img_local=$local_filename.".".$extension;
+                        //echo $img_local."<br>";
+                        
+                        // Save the image file if it doesnt exist
+                        if (!file_exists($img_local)) { 
+                            //echo 'file needs to be written'."<br>";
+                            //echo imap_base64($part['attachment']);
+                            
+                            $fp=fopen($img_local,"w");
+                            fputs($fp, $part['attachment']);
+                            fclose($fp);
+                        }
+                        else {
+                            //echo 'Image file does not need to be written'."<br>";
+                        }
+                        
+                        // Save the Metadata if it doesn't exist
+                        $text=$sender . " - " . $subject . " (" . $date . ")"; 
+
+                        $mf = new Image($img_local);
+                        $mf->settext($text);
+                        $mf->setdate($date);
+                        $mf->setepochtime(strval($timeadjusted));
+                        
+                        $meta_data_local=$local_filename.".txt"; 
+                        //echo "meta_data_local: ".$meta_data_local."<br><br>";
+                        if (!file_exists($meta_data_local)) {
+                            // Write meta data file
+                            $fp = fopen($meta_data_local, 'w'); // Open meta-data file for writing
+                            fwrite($fp, json_encode($mf)); // Write json encoded meta data
+                            fclose($fp);
+                        }
+                        else {
+                            //echo 'Metadata file does not need to be written'."<br>";
+                        }
+                    }
+                }
+            }
+        //}
+        //else {
+            //echo "Message ".$message_number." was read<br>";
+        //}
+    }
+
+    /* close the connection */
+    imap_close($connection);
+
+}
+
+
 
 //This function gets the file names of all images in the current directory
 //and ouputs them as a JavaScript array - NOT USED
 function get_local_photos_without_metadata($dirname="Images") {
-    $pattern="(.png|.jpg|.jpeg|.gif)"; //valid image extensions
+    $pattern="(.png|.jpg|.jpeg|.gif|.PNG|.JPG|.JPEG|.GIF)"; //valid image extensions
     //$files = array();
     $fileobjects = array();
     
@@ -549,7 +759,7 @@ function get_local_photos_without_metadata($dirname="Images") {
 //This function gets the file names of all images in the current directory
 //and ouputs them as a JavaScript array
 function get_local_photos() {
-    $pattern="(.png|.jpg|.jpeg|.gif)"; //valid image extensions
+    $pattern="(.png|.jpg|.jpeg|.gif|.PNG|.JPG|.JPEG|.GIF)"; //valid image extensions
     //$files = array();
     $fileobjects = array();
     GLOBAL $hashtag;
@@ -570,8 +780,10 @@ function get_local_photos() {
                 if (file_exists($meta_data_local)) {
                     // Read in metadata file
                     $data = json_decode(file_get_contents($meta_data_local));
-                    if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+                    if ($data === null) {
                         error_log("incorrect data");
+                        # delete file if exists
+                        if (file_exists($meta_data_local)) { unlink ($meta_data_local); }
                     }
                     else {
                         $mf = new Image($img_local); // Image name
@@ -598,6 +810,7 @@ function get_local_photos() {
 //$images = get_local_photos_without_metadata(); //Output the array elements containing the image file names
 get_instagram_photos();
 get_tweets();
+get_emails();
 $images = get_local_photos(); //Output the array elements containing the image file names
 
 //echo json_encode($images);

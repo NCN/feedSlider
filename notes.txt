@@ -70,23 +70,24 @@ X	Responsive image sizing
 X	Fade in doesn't work because I made span.image-wrapper no longer position absolute
 X	Get transparent loading image
 X	Investigate what preload does… set to preload all
+X	Handle 'Failed to load resource' image -- now we refresh page, hope it doesn't happen again
+X	E-mail: get image and make metadata from sender and subject
+X	Minimize what JSON data goes back to HTML… keep track of which photos are new somehow.
+X	Delete metadata file is json is corrupt… that way it will be re-written
+X	Remove ability to pause
+X	Handle corrupt metadata
+
 
 Base font on em so it scales with screen?
 
-Handle 'Failed to load resource' image
-Handle corrupt metadata
-E-mail: get image and make metadata from sender and subject
- http://davidwalsh.name/gmail-php-imap
- http://www.electrictoolbox.com/extract-attachments-email-php-imap/
- http://www.linuxscope.net/articles/mailAttachmentsPHP.html
-Minimize what JSON data goes back to HTML… keep track of which photos are new somehow.
-Delete metadata file is json is corrupt… that way it will be re-written
-Test on flatscreen TV
-Make sure autoplay always works… maybe set timer… if not playing, start playing
- ^ or just take out any ability to pause
-"Post to Twitter or Instagram with #hastag to add photos to slideshow"
+Test on flatscreen TV.
 
-
+Install imap locally, on personal Mac.
+Handle imap error without ruining json.
+Don't try to do email check if email and password were null.
+Run locally so it will still work if web connection goes down.
+Make footer text white on black.
+Make it have no footer if there are no arguments… in case we need to run it without web connection.
 
 
 *** LATER / REVENUE ***
