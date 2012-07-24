@@ -546,6 +546,7 @@ function get_emails() {
     GLOBAL $pass;
     GLOBAL $hashtag;
     
+	error_log("email: ".$email.", $pass: ".$pass);
     if (($email === null) || ($pass === null)) {
         // No email address or password
         return;

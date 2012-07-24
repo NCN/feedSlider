@@ -1,0 +1,221 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10840\viewh13280\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 ********* Notes *********\
+\
+{\field{\*\fldinst{HYPERLINK "http://feedslider/index.html?hashtag=igersdetroit&email=ndwedpics@gmail.com&password=wedding1234&delay=5000"}}{\fldrslt http://feedslider/index.html?hashtag=igersdetroit&email=ndwedpics@gmail.com&password=wedding1234&delay=5000}}\
+\
+To open Chrome in a way that lets PHP write files:\
+	open -b com.google.chrome --args --allow-file-access-from-files\
+\
+Open the site in browser:\
+	http://mysite/index.html\
+	http://mysite/index.html?hashtag=detroit&title=Nathan and Danielle's Wedding Slideshow&email=nathannantais@gmail.com&delay=5000\
+www.slideshow.markcharko.com/index.html?hashtag=detroit&title=Nathan and Danielle's Wedding Slideshow&email=nathannantais@gmail.com&delay=5000\
+\
+or\
+	http://mysite/index.html?hashtag=detroit&title=Nathan and Danielle's Wedding Slideshow&delay=5000\
+	Email is optional\
+\
+
+\b \ul Setting up web server on Mac so PHP will work:\
+
+\b0 \ulnone 	http://php.about.com/od/phpbasics/ss/installMac.htm\
+	http://www.procata.com/blog/archives/2007/10/28/working-with-php-5-in-mac-os-x-105/\
+
+\b \ul Setting up imap for PHP
+\b0 \ulnone \
+	{\field{\*\fldinst{HYPERLINK "http://blog.xeonxai.com/2009/12/03/160/"}}{\fldrslt http://blog.xeonxai.com/2009/12/03/160/}}\
+\pard\pardeftab720\sl420
+
+\b \cf0 \ul \ulc0 Restarting Apache server
+\b0 \ulnone \
+	sudo apachectl restart\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+Permissions:\
+	chmod 777 mysite/Images folder \'85 any folder where the PHP will have to write\
+\
+Reading PHP errors:\
+	tail -f -n 200 /var/log/apache2/error_log \
+\
+Twitter search:\
+	https://dev.twitter.com/docs/api/1/get/search (limit 150 \
+	http://search.twitter.com/search.rss?q=detroit&result_type=recent&rpp=100\
+	rpp = results per page, max 100\
+	result_type = mixed: Include both popular and real time results in the response. OR recent: return only the most recent results in the response OR popular: return only the most popular results in the response.\
+	show_user=true <- add user name to start of tweet like "n_c_n: tweet"\
+	include_entities <- include a node called "entities," with images and whatnot\
+\
+\
+http://cappelendesign.no/2010/04/tutorial-twitter-rss-feed-parser-in-pure-php/\
+\
+\
+\
+********* TO DO *********\
+\
+X	make sure hashtag is present X\
+X	save image to Images folder (1234567.jpg) 	X\
+X	Write json info to 1234567.txt	X\
+X	sort by epoch time	X\
+X	save tweet to Images folder (meta data).. duplicate the Tweet image		\
+X	download twitpic image profile image		X fuck it\
+X	Switch to streaming API\
+X	Update Instagram (writes to Images folder)		X\
+X	\'85 Twitter, email, etc write to Images folder		X\
+X	Load all images from Images folder			X\
+X	Sort by epoch					X\
+X	Handle no internet connection			X\
+X	Handle weird cases like metadata missing for image 	X\
+X	Check that expanded URL contains one of the things we support	X\
+X 	make Images/detroit and Images/ndwedding\
+X	http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html\
+X	Make it www.slideshow.markcharko.com/hastag?tag=ndwedding\
+X	Add new Twitter search format\
+X	Make caption font bigger for non-image tweets\
+X	Add to github\
+X	Fix caption size when loading non-cached images	\
+X	Instead of hard-coding 550px into js, get width property of the div \
+X	Hide thumbnails\
+X	Center image\
+X	Change the caption size after the image has faded in\'85 because when going from portrait to square image the caption is too wide. <- or just dissapear caption when fadeout begins and reappear it when fadein done\
+X	Periodically change background color?\
+X	Responsive design\
+X	No title\
+X	Float footer from bottom like Phil suggested\
+X	Responsive image sizing\
+X	Fade in doesn't work because I made span.image-wrapper no longer position absolute\
+X	Get transparent loading image\
+X	Investigate what preload does\'85 set to preload all\
+X	Handle 'Failed to load resource' image -- now we refresh page, hope it doesn't happen again\
+X	E-mail: get image and make metadata from sender and subject\
+X	Minimize what JSON data goes back to HTML\'85 keep track of which photos are new somehow.\
+X	Delete metadata file is json is corrupt\'85 that way it will be re-written\
+X	Remove ability to pause\
+X	Handle corrupt metadata\
+\
+\
+Base font on em so it scales with screen?\
+\
+Test on flatscreen TV.\
+\
+Install imap locally, on personal Mac.\
+Handle imap error without ruining json.\
+Don't try to do email check if email and password were null.\
+Run locally so it will still work if web connection goes down.\
+Make footer text white on black.\
+Make it have no footer if there are no arguments\'85 in case we need to run it without web connection.\
+Get rid of stupid popup\
+\
+\
+*** LATER / REVENUE ***\
+Display something on front-end when update in progress\
+Show ads, people can pay to remove them\
+Pay to make it private\
+Pay to have a custom page (like for a bar or restaurant)\
+Pay to order event photos from shutterfly partnership.\
+Mobile support\
+Start with single image that says where to tweet or email\'85 generate it\
+\
+Available for 12.99\
+STREAMERIFIC.COM\
+TAGSLIDER.COM\
+FEEDSLIDER.COM\
+SLIDEALIVE.COM\
+HASHTANK.COM\
+HASHTALES.COM\
+TAGGFEED.COM\
+BASHFEED.COM\
+TAGSALIVE.COM\
+SHOWSHABLE.COM\
+TAGGBAGG.COM\
+\
+\
+\
+*** EMAIL ***\
+ndwedpics\
+wedding1234\
+\
+\
+\
+\
+*** HTML NOTES ***\
+\
+Determining caption size:\
+\
+Slideshow-container\
+width: 550px\
+\
+Caption\
+width: 333px\
+bottom: 0px\
+left: 110px\
+\
+Image:\
+width: 333\
+\
+Calculating caption 'left:' coordinate:\
+(550-333) / 2 + 1 = 110\
+\
+\
+** Adjusting image size: **\
+\
+jquery.galleriffic.js:\
+    var scaleHeight = 500;\
+    var maxWidth = 700;\
+\
+css:\
+div.content \{\
+	/* The display of content is enabled using jQuery so that the slideshow content won't display unless javascript is enabled. */\
+	display: none;\
+    margin-left:auto;\
+    margin-right:auto;\
+	/*float: right;*/\
+	width: 800px; /* width of the actual image area */ /* was 550 */\
+\}\
+\
+div.loader \{\
+	position: absolute;\
+	top: 0;\
+	left: 0;\
+	background-image: url('loader.gif');\
+	background-repeat: no-repeat;\
+	background-position: center;\
+	width: 800px; /* was 550 */\
+	height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */\
+\}\
+\
+div.slideshow a.advance-link \{\
+	display: block;\
+	width: 800px; /* was 550 */\
+	height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */\
+	line-height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */\
+	text-align: center;\
+\}\
+\
+\
+\
+\
+\
+\
+\
+***** GIT ******\
+git status\
+git add filename\
+git commit -m "comment"\
+git push origin master  # push to github\
+ncn\
+nathan424\
+\
+To get changes from repository on web:\
+git remote add original https://github.com/NCN/feedSlider.git 
+\i (once)
+\i0 \
+git fetch original\
+git merge original/master\
+\
+\
+}
