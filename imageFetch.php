@@ -17,10 +17,8 @@ $hashtag=$_GET['hashtag'];
 error_log("Get images for #".$hashtag);
 
 $email=$_GET['email'];
-error_log("Get images from email ".$email);
-
 $pass=$_GET['password'];
-error_log(" password ".$pass);
+error_log("Get images from email ".$email.", password ".$pass);
 
 $origurl = "";
 
@@ -575,9 +573,10 @@ function get_emails() {
     GLOBAL $pass;
     GLOBAL $hashtag;
     
-	error_log("email: ".$email.", $pass: ".$pass);
-    if (($email === null) || ($pass === null)) {
+	//error_log("email: ".$email.", $pass: ".$pass);
+    if (($email == null) || ($pass == null) || ($email == 'undefined') || ($pass == 'undefined')) {
         // No email address or password
+        error_log("email or password was undefined - not getting emails");
         return;
     }
 
