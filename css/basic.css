@@ -34,7 +34,8 @@ h2 {
 	padding-top: 0px;
 	font-size:2em;
     /*font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;*/
-	color: #909090; /* was #333 */
+	/*color: #909090; /* was #333 */
+	color: #F0F0F0;
 }
 pre {
 	font-size: 1.2em;

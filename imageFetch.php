@@ -377,7 +377,21 @@ function get_tweets() {
                     else {
                         //echo "Tweet had a picture <br>";
                         // Download image file
-                        file_put_contents($img_local_pic, file_get_contents($image_to_download));
+						$get_result = file_get_contents($image_to_download);
+						if ($get_result === false) {
+							error_log("file_get_contents failed");
+						}
+						else {
+							$put_result = file_put_contents($img_local_pic, $get_result);
+							if ($put_result === false) {
+								error_log("file_put_contents failed");
+								
+								if (file_exists($img_local_pic)) { 
+									error_log(" deleting ".$img_local_pic);
+									unlink ($img_local_pic); # delete file if exists
+								}
+							}
+						}
                     }
                 }
                 
@@ -497,8 +511,23 @@ function get_instagram_photos() {
                 
                 if (!file_exists($img_local)) {
                     // Download image file
-                    file_put_contents($img_local, file_get_contents($id));
-                }
+					$get_result = file_get_contents($id);
+					if ($get_result === false) {
+						error_log("file_get_contents failed");
+					}
+					else {
+						$put_result = file_put_contents($img_local, $get_result);
+						if ($put_result === false) {
+							error_log("file_put_contents failed");
+							
+							if (file_exists($img_local)) { 
+								error_log(" deleting ".$img_local);
+								unlink ($img_local); # delete file if exists
+							}
+						}
+					}
+					
+				}
                 
                 // *******************************************
                 // WRITE JSON METADATA TO LOCAL FILE
@@ -777,21 +806,23 @@ function get_local_photos() {
                 $file_name_without_extension =  $dirname.'/'.basename($file,'.'.$info['extension']);
                 $meta_data_local=$file_name_without_extension.".txt";
                 
-                // Can only load the image if the metadata file exists
-                if (file_exists($meta_data_local)) {
-                    // Read in metadata file
-                    $data = json_decode(file_get_contents($meta_data_local));
-                    if ($data === null) {
-                        error_log("incorrect data");
-                        # delete file if exists
-                        if (file_exists($meta_data_local)) { unlink ($meta_data_local); }
-                    }
-                    else {
-                        $mf = new Image($img_local); // Image name
-                        $mf->settext($data->text); // Text from read in metadata '@n_c_n: This is the best wedding - totally dancing my butt of! Hurrah! Not looking forward to the hangover though');
-                        $mf->setdate($data->date);
-                        $mf->setepochtime($data->epochtime);
-                        $fileobjects[] = $mf;
+                if ((file_exists($img_local)) && (filesize($img_local) > 0)) {
+                    // Can only load the image if the metadata file exists
+                    if ((file_exists($meta_data_local)) && (filesize($meta_data_local) > 0)) {
+                        // Read in metadata file
+                        $data = json_decode(file_get_contents($meta_data_local));
+                        if ($data === null) {
+                            error_log("incorrect data");
+                            # delete file if exists
+                            if (file_exists($meta_data_local)) { unlink ($meta_data_local); }
+                        }
+                        else {
+                            $mf = new Image($img_local); // Image name
+                            $mf->settext($data->text); // Text from read in metadata '@n_c_n: This is the best wedding - totally dancing my butt of! Hurrah! Not looking forward to the hangover though');
+                            $mf->setdate($data->date);
+                            $mf->setepochtime($data->epochtime);
+                            $fileobjects[] = $mf;
+                        }
                     }
                 }
             }

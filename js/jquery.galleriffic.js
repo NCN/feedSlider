@@ -338,12 +338,17 @@
 				var image = new Image();
 
 				image.onerror = function() {
-                    console.log("image.onerror");
-                    window.location.reload(true); // refresh page
+					console.log("preloadRecursive.image.onerror: " + imageData.slideUrl);
+                 
+                    gallery.removeImageByIndex(currentIndex); // Remove this image
+
+                    //return this.syncThumbs();
+                 
+					//setTimeout('window.location.reload(true)',10000); // refresh page
                 }
 				
 				image.onload = function() {
-                    console.log("image.onload");
+                    console.log("preloadRecursive.image.onload");
 					imageData.image = this;
 					gallery.preloadNext(startIndex, currentIndex);
 
@@ -632,13 +637,18 @@
 					var image = new Image();
 					
                     image.onerror = function() {
-                        console.log("image.onerror");
-                        window.location.reload(true); // refresh page
+                        console.log("refresh.image.onerror: " + imageData.slideUrl);
+
+                        gallery.removeImageByIndex(index); // Remove this image
+
+                        //return this.syncThumbs();
+                 
+                        //setTimeout('window.location.reload(true)',10000); // refresh page
                     }
 
 					// Wire up mainImage onload event
 					image.onload = function() {
-                        console.log("image.onload");
+                        console.log("refresh.image.onload");
 						imageData.image = this;
 
 						// Only build image if the out transition has completed and we are still on the same image hash

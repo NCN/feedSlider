@@ -1,27 +1,36 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\margl1440\margr1440\vieww10840\viewh13280\viewkind0
+\margl1440\margr1440\vieww12600\viewh13280\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
 
-\f0\fs24 \cf0 ********* Notes *********\
+\f0\fs24 \cf0 \
+
+\b \ul To open Chrome in a way that lets PHP write files:\
+
+\b0 \ulnone 	open -b com.google.chrome --args --allow-file-access-from-files\
+\
+
+\b \ul Open the site in browser:\
+
+\b0 \ulnone 	http://mysite/index.html\
+	http://mysite/index.html?hashtag=detroit&title=Nathan and Danielle's Wedding Slideshow&email=nathannantais@gmail.com&delay=5000\
+www.slideshow.markcharko.com/index.html?hashtag=detroit&title=Nathan and Danielle's Wedding Slideshow&email=nathannantais@gmail.com&delay=5000\
 \
 {\field{\*\fldinst{HYPERLINK "http://feedslider/index.html?hashtag=igersdetroit&email=ndwedpics@gmail.com&password=wedding1234&delay=5000"}}{\fldrslt http://feedslider/index.html?hashtag=igersdetroit&email=ndwedpics@gmail.com&password=wedding1234&delay=5000}}\
 \
-To open Chrome in a way that lets PHP write files:\
-	open -b com.google.chrome --args --allow-file-access-from-files\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+{\field{\*\fldinst{HYPERLINK "http://feedslider/?delay=3000&hashtag=igersdetroit&email=ndwedpics@gmail.com&password=wedding1234"}}{\fldrslt \cf0 http://feedslider/?delay=3000&hashtag=igersdetroit&email=ndwedpics@gmail.com&password=wedding1234}}\
 \
-Open the site in browser:\
-	http://mysite/index.html\
-	http://mysite/index.html?hashtag=detroit&title=Nathan and Danielle's Wedding Slideshow&email=nathannantais@gmail.com&delay=5000\
-www.slideshow.markcharko.com/index.html?hashtag=detroit&title=Nathan and Danielle's Wedding Slideshow&email=nathannantais@gmail.com&delay=5000\
+{\field{\*\fldinst{HYPERLINK "http://feedslider/?delay=700&hashtag=igersdetroit&email=ndwedpics@gmail.com&password=wedding1234"}}{\fldrslt http://feedslider/?delay=700&hashtag=igersdetroit&email=ndwedpics@gmail.com&password=wedding1234}}\
 \
 or\
 	http://mysite/index.html?hashtag=detroit&title=Nathan and Danielle's Wedding Slideshow&delay=5000\
 	Email is optional\
 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
 
-\b \ul Setting up web server on Mac so PHP will work:\
+\b \cf0 \ul \ulc0 Setting up web server on Mac so PHP will work:\
 
 \b0 \ulnone 	http://php.about.com/od/phpbasics/ss/installMac.htm\
 	http://www.procata.com/blog/archives/2007/10/28/working-with-php-5-in-mac-os-x-105/\
@@ -36,12 +45,19 @@ or\
 	sudo apachectl restart\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
 \cf0 \
-Permissions:\
+
+\b \ul Permissions:
+\b0 \ulnone \
 	chmod 777 mysite/Images folder \'85 any folder where the PHP will have to write\
 \
-Reading PHP errors:\
+
+\b \ul Reading PHP errors:
+\b0 \ulnone \
 	tail -f -n 200 /var/log/apache2/error_log \
 \
+
+\b \ul RSS Feeds
+\b0 \ulnone \
 Twitter search:\
 	https://dev.twitter.com/docs/api/1/get/search (limit 150 \
 	http://search.twitter.com/search.rss?q=detroit&result_type=recent&rpp=100\
@@ -50,12 +66,17 @@ Twitter search:\
 	show_user=true <- add user name to start of tweet like "n_c_n: tweet"\
 	include_entities <- include a node called "entities," with images and whatnot\
 \
-\
 http://cappelendesign.no/2010/04/tutorial-twitter-rss-feed-parser-in-pure-php/\
 \
+
+\b \ul Generating HTML for Local Images
+\b0 \ulnone \
+for file in *; do echo "<li><a class=\\"thumb\\" name=\\"leaf\\" href=\\"Images_perm/$file\\" title=\\"\\"><img src=\\"Images_perm/thumb.jpg\\" alt=\\"\\" /></a></li>" >> html.txt; done\
 \
 \
-********* TO DO *********\
+
+\b \ul ********* TO DO *********
+\b0 \ulnone \
 \
 X	make sure hashtag is present X\
 X	save image to Images folder (1234567.jpg) 	X\
@@ -96,19 +117,24 @@ X	Minimize what JSON data goes back to HTML\'85 keep track of which photos are n
 X	Delete metadata file is json is corrupt\'85 that way it will be re-written\
 X	Remove ability to pause\
 X	Handle corrupt metadata\
-\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 X	Install imap locally, on personal Mac.\
+X	Run locally so it will still work if web connection goes down.\
+X	Make footer text white on black.\
+X	Detect incomplete photo downloads\
+X	Test on flatscreen TV.\
+X	Make it have no footer if there are no arguments\'85 in case we need to run it without web connection.\
+X	Get rid of stupid popup\
+X	Don't crash on 0KB photo\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
 \
 Base font on em so it scales with screen?\
 \
-Test on flatscreen TV.\
-\
-Install imap locally, on personal Mac.\
-Handle imap error without ruining json.\
+Reset page on php error?\
+Handle imap error (from bad password) without ruining json.\
+Better solution to 'resource did not load'\'85 try remove image from slideshow and refresh slideshow\
 Don't try to do email check if email and password were null.\
-Run locally so it will still work if web connection goes down.\
-Make footer text white on black.\
-Make it have no footer if there are no arguments\'85 in case we need to run it without web connection.\
-Get rid of stupid popup\
 \
 \
 *** LATER / REVENUE ***\
