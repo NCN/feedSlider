@@ -607,7 +607,7 @@ function get_emails() {
 
     error_log("  message loop");
     for($message_number = 1; $message_number <= $count; $message_number++) {
-        error_log("  imap_headerinfo");
+        error_log("  Message $message_number ... call imap_headerinfo");
         $header = imap_headerinfo($connection, $message_number);
         
         // Look at unread emails only
@@ -640,14 +640,14 @@ function get_emails() {
             $date=date("Y-m-d H:i:s",$timeadjusted); // Build human-readable date in EST
             //echo $date."<br>";
 
-            error_log("  sender=$sender, subject=$subject, date=$date");
+            error_log("   sender=$sender, subject=$subject, date=$date");
             
             // Search for attachments
             $attachments = array();
             if(isset($structure->parts) && count($structure->parts)) {
                 
                 for($i = 0; $i < count($structure->parts); $i++) {
-                    error_log("    i=$i");
+
                     $attachments[$i] = array(
                         'is_attachment' => false,
                         'filename' => '',
@@ -673,90 +673,85 @@ function get_emails() {
                         }
                     }
                     
-                    error_log("    if 3");
                     if($attachments[$i]['is_attachment']) {
 
-                        error_log("    imap_fetchbody start");
-                        $attachments[$i]['attachment'] = imap_fetchbody($connection, $message_number, $i+1);
-                        error_log("    imap_fetchbody done");
+                        // Get attachment name
+                        $filename=$attachments[$i]['filename'];
+                        //echo $filename."<br>";
+                        error_log("    filename=$filename");
                         
-                        if($structure->parts[$i]->encoding == 3) { // 3 = BASE64
-                            $attachments[$i]['attachment'] = base64_decode($attachments[$i]['attachment']);
-                        }
-                        elseif($structure->parts[$i]->encoding == 4) { // 4 = QUOTED-PRINTABLE
-                            $attachments[$i]['attachment'] = quoted_printable_decode($attachments[$i]['attachment']);
-                        }
-                    }
-                }
-            }
-            
-            error_log("  attachment loop");
-            $attachment_number=0;
-            foreach($attachments as $part) {
-                if($part['is_attachment']) {
-                
-                    // Get attachment name
-                    $filename=$part['filename'];
-                    //echo $filename."<br>";
-                    error_log("    filename=$filename");
-                    
-                    // Get extension
-                    $extension = substr(strrchr($filename, '.'), 1);
-                    //echo $extension."<br>";
-
-                    // Check is extension is JPG JPEG PNG GIF
-                    if(
-                    (!(stristr($extension, 'png') === FALSE)) ||
-                    (!(stristr($extension, 'jpg') === FALSE)) ||
-                    (!(stristr($extension, 'jpeg') === FALSE)) ||
-                    (!(stristr($extension, 'gif') === FALSE))
-                    )
-                    {
-                        //echo "File was an image"."<br>";
-                                        
-                        // Build the local file name we will save to
-                        $local_filename = $sender."_".$subject."_".$date."_".$attachment_number; // Form name
-                        $local_filename = clean_filename($local_filename); // Remove bad characters
-                        $local_filename = "Images/".$hashtag."/".$local_filename; // Add path
-                        $local_filename = str_replace(' ', '_', $local_filename);
+                        // Get extension
+                        $extension = substr(strrchr($filename, '.'), 1);
+                        //echo $extension."<br>";
                         
-                        $img_local=$local_filename.".".$extension;
-                        //echo $img_local."<br>";
-                        
-                        // Save the image file if it doesnt exist
-                        if (!file_exists($img_local)) { 
-                            //echo 'file needs to be written'."<br>";
-                            //echo imap_base64($part['attachment']);
+                        // Check is extension is JPG JPEG PNG GIF
+                        if(
+                           (!(stristr($extension, 'png') === FALSE)) ||
+                           (!(stristr($extension, 'jpg') === FALSE)) ||
+                           (!(stristr($extension, 'jpeg') === FALSE)) ||
+                           (!(stristr($extension, 'gif') === FALSE))
+                           )
+                        {
+                            //echo "File was an image"."<br>";
                             
-                            $fp=fopen($img_local,"w");
-                            fputs($fp, $part['attachment']);
-                            fclose($fp);
-                        }
-                        else {
-                            //echo 'Image file does not need to be written'."<br>";
-                        }
-                        
-                        // Save the Metadata if it doesn't exist
-                        $text=$sender . " - " . $subject . " (" . $date . ")"; 
+                            // Build the local file name we will save to
+                            $local_filename = $sender."_".$subject."_".$date."_".$i; // Form name
+                            $local_filename = clean_filename($local_filename); // Remove bad characters
+                            $local_filename = "Images/".$hashtag."/".$local_filename; // Add path
+                            $local_filename = str_replace(' ', '_', $local_filename);
+                            
+                            $img_local=$local_filename.".".$extension;
+                            //echo $img_local."<br>";
+                            error_log("    img_local=$img_local");
+                            
+                            // Save the image file if it doesnt exist
+                            if (!file_exists($img_local)) { 
+                                //echo 'file needs to be written'."<br>";
+                                //echo imap_base64($attachments[$i]['attachment']);
 
-                        $mf = new Image($img_local);
-                        $mf->settext($text);
-                        $mf->setdate($date);
-                        $mf->setepochtime(strval($timeadjusted));
-                        
-                        $meta_data_local=$local_filename.".txt"; 
-                        //echo "meta_data_local: ".$meta_data_local."<br><br>";
-                        if (!file_exists($meta_data_local)) {
-                            // Write meta data file
-                            $fp = fopen($meta_data_local, 'w'); // Open meta-data file for writing
-                            fwrite($fp, json_encode($mf)); // Write json encoded meta data
-                            fclose($fp);
+                                error_log("      img_local DOES NOT exist yet - get image start");
+                                $attachments[$i]['attachment'] = imap_fetchbody($connection, $message_number, $i+1);
+                                
+                                if($structure->parts[$i]->encoding == 3) { // 3 = BASE64
+                                    $attachments[$i]['attachment'] = base64_decode($attachments[$i]['attachment']);
+                                }
+                                elseif($structure->parts[$i]->encoding == 4) { // 4 = QUOTED-PRINTABLE
+                                    $attachments[$i]['attachment'] = quoted_printable_decode($attachments[$i]['attachment']);
+                                }
+
+                                error_log("      get image done, now writing");
+                                
+                                $fp=fopen($img_local,"w");
+                                fputs($fp, $attachments[$i]['attachment']);
+                                fclose($fp);
+
+                                error_log("      done writing");
+                            }
+                            else {
+                                //echo 'Image file does not need to be written'."<br>";
+                                error_log("      img_local exists");
+                            }
+                            
+                            // Save the Metadata if it doesn't exist
+                            $text=$sender . " - " . $subject . " (" . $date . ")"; 
+                            
+                            $mf = new Image($img_local);
+                            $mf->settext($text);
+                            $mf->setdate($date);
+                            $mf->setepochtime(strval($timeadjusted));
+                            
+                            $meta_data_local=$local_filename.".txt"; 
+                            //echo "meta_data_local: ".$meta_data_local."<br><br>";
+                            if (!file_exists($meta_data_local)) {
+                                // Write meta data file
+                                $fp = fopen($meta_data_local, 'w'); // Open meta-data file for writing
+                                fwrite($fp, json_encode($mf)); // Write json encoded meta data
+                                fclose($fp);
+                            }
+                            else {
+                                //echo 'Metadata file does not need to be written'."<br>";
+                            }
                         }
-                        else {
-                            //echo 'Metadata file does not need to be written'."<br>";
-                        }
-                        
-                        $attachment_number = $attachment_number + 1;
                     }
                 }
             }
