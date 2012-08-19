@@ -1,0 +1,100 @@
+<li><a class="thumb" name="leaf" href="Images_perm/024_24b.JPG" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/2006-01-30 Trip To SanDiego 114.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/2007-12-01 - dan and jenny 036.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/2007-12-01 - danielle coney island-2.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Black Tie Bingo 004.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Camping 013.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/ChicagoDisk1 005.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/ChicagoDisk1 107.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/ChicagoDisk3 041.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/ChicagoDisk3 057.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Danielle and Justin's Graduation Party 006.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Danielles Trip and Huntsville and Golf 061.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Fetched" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Huntsville and Willistead Classic 065.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG1_0002-34.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG1_0004-33.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG1_0006-35.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG1_0007-36.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG1_0009-37.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG1_0010-38.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG1_0011-39.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG1_0012-40.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG1_0019-41.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG1_0022-42.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG1_0025-43.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_1823-1.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_1952-3.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_2254-4.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_2684-8.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_2694-9.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_3243.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_3483-10.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_3523-11.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_3658.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_3663-12.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_3667-13.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_4290-17.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_4335-18.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_4354-19.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_4420-20.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_4647-21.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_4687-22.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_4767-23.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_4822-25.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_4896-26.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_4896.JPG" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_5350-29.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_5531-30.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/IMG_5717-31.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Me and Danielle - Freiburg, Triberg, BadenBaden 034.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Me and Danielle - Freiburg, Triberg, BadenBaden 039.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Me and Danielle - Freiburg, Triberg, BadenBaden 049.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Me and Danielle - Freiburg, Triberg, BadenBaden 079.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Me and Danielle - Freiburg, Triberg, BadenBaden 094.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Me and Danielle - Freiburg, Triberg, BadenBaden 107.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Me and Danielle - Freiburg, Triberg, BadenBaden 130.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Me and Danielle - Freiburg, Triberg, BadenBaden 165.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Me and Danielle - Freiburg, Triberg, BadenBaden 166.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Me and Danielle - Freiburg, Triberg, BadenBaden 168.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Me and Danielle - Garmish Partenkirchen, Neuschwanstein 014.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Me and Danielle - Last Day in Stuttgart 006.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Me and Danielle - Mercedes Museum, Tubingen, and Munchen 1 125.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/Me and Danielle - Mercedes Museum, Tubingen, and Munchen 1 127.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/_MG_2115_small.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/_MG_2129.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/_MG_2149.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/_MG_2168.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/_MG_9503.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/_MG_9505.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/_MG_9566.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/danielle_2.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/danielle_3.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/danielle_4.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/danielle_7.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/danielle_8.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/danielle_9.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/danielles grad, hunstville, jackie shower and bachelorette 037.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/friends_elliott_1.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/friends_elliott_2.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/friends_elliott_3.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/friends_elliott_4.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/friends_james_10.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/friends_james_12.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/friends_james_13.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/friends_james_14.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/friends_james_2.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/friends_james_3.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/friends_james_7and8.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/friends_lauren_1.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/laforet, fabbro, toronto 012.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/laforet, fabbro, toronto 024.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/nate at kims wedding.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/nateanddanielle.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/niagara falls 011.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/rt2004 - 03 - fundy national park 039.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/rt2004 - 05 - hopewell rocks 004.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/rt2004 - 06 - moncton, new bruncswick 010.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/rt2004 - 09 - green gables and new glasgow lobster supper 014 copy.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/the guys 027.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>
+<li><a class="thumb" name="leaf" href="Images_perm/trip to toronto march 2004 001.jpg" title=""><img src="Images_perm/thumb.jpg" alt="" /></a></li>

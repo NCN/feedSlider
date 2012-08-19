@@ -14,11 +14,9 @@ set_time_limit(300); // 5 minutes timeout time
 
 // Get hashtag variable passed from browser
 $hashtag=$_GET['hashtag'];
-error_log("Get images for #".$hashtag);
-
 $email=$_GET['email'];
 $pass=$_GET['password'];
-error_log("Get images from email ".$email.", password ".$pass);
+error_log("Get images for #".$hashtag.", email ".$email.", password ".$pass);
 
 $origurl = "";
 
@@ -587,6 +585,7 @@ function get_emails() {
 
     /* try to connect */
     //$connection = imap_open($hostname,$username,$password) or die('Cannot connect to Gmail: ' . imap_last_error());
+    error_log("  imap_open");
     if (!$connection = imap_open($hostname,$username,$password)) {
         // Error
         error_log("imap_open(".$hostname.",".$username.",".$password.") failed, with error: ".imap_last_error());
@@ -606,14 +605,16 @@ function get_emails() {
             return $str;
     }
 
+    error_log("  message loop");
     for($message_number = 1; $message_number <= $count; $message_number++) {
+        error_log("  imap_headerinfo");
         $header = imap_headerinfo($connection, $message_number);
         
         // Look at unread emails only
         //if($header->Unseen == 'U') {
             //echo "Message ".$message_number." is unread<br>";
 
-            $raw_body = imap_body($connection, $message_number);
+            //$raw_body = imap_body($connection, $message_number);
             $structure = imap_fetchstructure($connection, $message_number);
             
             // Get sender
@@ -626,6 +627,9 @@ function get_emails() {
 
             // Get subject
             $subject = decode_utf8($header->subject);
+            if ($subject == null) {
+                $subject = "";
+            }
             //echo $subject."<br>";
             
             // Get date time
@@ -636,13 +640,14 @@ function get_emails() {
             $date=date("Y-m-d H:i:s",$timeadjusted); // Build human-readable date in EST
             //echo $date."<br>";
 
+            error_log("  sender=$sender, subject=$subject, date=$date");
             
             // Search for attachments
             $attachments = array();
             if(isset($structure->parts) && count($structure->parts)) {
                 
                 for($i = 0; $i < count($structure->parts); $i++) {
-
+                    error_log("    i=$i");
                     $attachments[$i] = array(
                         'is_attachment' => false,
                         'filename' => '',
@@ -668,8 +673,13 @@ function get_emails() {
                         }
                     }
                     
+                    error_log("    if 3");
                     if($attachments[$i]['is_attachment']) {
+
+                        error_log("    imap_fetchbody start");
                         $attachments[$i]['attachment'] = imap_fetchbody($connection, $message_number, $i+1);
+                        error_log("    imap_fetchbody done");
+                        
                         if($structure->parts[$i]->encoding == 3) { // 3 = BASE64
                             $attachments[$i]['attachment'] = base64_decode($attachments[$i]['attachment']);
                         }
@@ -680,12 +690,15 @@ function get_emails() {
                 }
             }
             
+            error_log("  attachment loop");
+            $attachment_number=0;
             foreach($attachments as $part) {
                 if($part['is_attachment']) {
                 
                     // Get attachment name
                     $filename=$part['filename'];
                     //echo $filename."<br>";
+                    error_log("    filename=$filename");
                     
                     // Get extension
                     $extension = substr(strrchr($filename, '.'), 1);
@@ -702,7 +715,7 @@ function get_emails() {
                         //echo "File was an image"."<br>";
                                         
                         // Build the local file name we will save to
-                        $local_filename = $sender."_".$subject."_".$date; // Form name
+                        $local_filename = $sender."_".$subject."_".$date."_".$attachment_number; // Form name
                         $local_filename = clean_filename($local_filename); // Remove bad characters
                         $local_filename = "Images/".$hashtag."/".$local_filename; // Add path
                         $local_filename = str_replace(' ', '_', $local_filename);
@@ -742,6 +755,8 @@ function get_emails() {
                         else {
                             //echo 'Metadata file does not need to be written'."<br>";
                         }
+                        
+                        $attachment_number = $attachment_number + 1;
                     }
                 }
             }
@@ -761,7 +776,7 @@ function get_emails() {
 //This function gets the file names of all images in the current directory
 //and ouputs them as a JavaScript array - NOT USED
 function get_local_photos_without_metadata($dirname="Images") {
-    $pattern="(.png|.jpg|.jpeg|.gif|.PNG|.JPG|.JPEG|.GIF)"; //valid image extensions
+    $pattern="(.png$|.jpg$|.jpeg$|.gif$|.PNG$|.JPG$|.JPEG$|.GIF$)"; //valid image extensions
     //$files = array();
     $fileobjects = array();
     
@@ -788,7 +803,7 @@ function get_local_photos_without_metadata($dirname="Images") {
 //This function gets the file names of all images in the current directory
 //and ouputs them as a JavaScript array
 function get_local_photos() {
-    $pattern="(.png|.jpg|.jpeg|.gif|.PNG|.JPG|.JPEG|.GIF)"; //valid image extensions
+    $pattern="(.png$|.jpg$|.jpeg$|.gif$|.PNG$|.JPG$|.JPEG$|.GIF$)"; //valid image extensions
     //$files = array();
     $fileobjects = array();
     GLOBAL $hashtag;
@@ -839,9 +854,16 @@ function get_local_photos() {
 //echo 'var galleryarray=new Array();'; //Define array in JavaScript
 
 //$images = get_local_photos_without_metadata(); //Output the array elements containing the image file names
+error_log("get_instagram_photos()");
 get_instagram_photos();
+
+error_log("get_tweets()");
 get_tweets();
+
+error_log("get_emails()");
 get_emails();
+
+error_log("get_local_photos()");
 $images = get_local_photos(); //Output the array elements containing the image file names
 
 //echo json_encode($images);

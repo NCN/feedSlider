@@ -344,7 +344,7 @@
 
                     //return this.syncThumbs();
                  
-					//setTimeout('window.location.reload(true)',10000); // refresh page
+					setTimeout('window.location.reload(true)',10000); // refresh page
                 }
 				
 				image.onload = function() {
@@ -643,7 +643,7 @@
 
                         //return this.syncThumbs();
                  
-                        //setTimeout('window.location.reload(true)',10000); // refresh page
+                        setTimeout('window.location.reload(true)',10000); // refresh page
                     }
 
 					// Wire up mainImage onload event
