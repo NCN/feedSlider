@@ -7,12 +7,28 @@
  *
  * Much thanks to primary contributer Ponticlaro (http://www.ponticlaro.com)
  */
+
+function escapeshellarg (arg) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Felix Geisendoerfer (http://www.debuggable.com/felix)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // *     example 1: escapeshellarg("kevin's birthday");
+    // *     returns 1: "'kevin\'s birthday'"
+    var ret = '';
+    
+    ret = arg.replace(/[^\\]'/g, function (m, i, s) {
+                      return m.slice(0, 1) + '\\\'';
+                      });
+    
+    return "'" + ret + "'";
+}
+
 ;(function($) {
 	// Globally keep track of all images by their unique hash.  Each item is an image data object.
 	var allImages = {};
 	var imageCounter = 0;
-    
-	// Galleriffic static class
+  
+    // Galleriffic static class
 	$.galleriffic = {
 		version: '2.0.1',
 
@@ -339,12 +355,22 @@
 
 				image.onerror = function() {
 					console.log("preloadRecursive.image.onerror: " + imageData.slideUrl);
+                    console.log("preloadRecursive.image.onerror: " + escapeshellarg(imageData.slideUrl));
                  
                     gallery.removeImageByIndex(currentIndex); // Remove this image
 
+                    // Call .php file to ban file
+                    $.post(
+                        "ban_file.php",     // url
+                        { filename : escapeshellarg(imageData.slideUrl) },         // post-data
+                        function(data){                                // response
+                            console.log(data);
+                        }
+                    );
+
                     //return this.syncThumbs();
-                 //TODO TURN BACK ON - 8/23
-					//setTimeout('window.location.reload(true)',10000); // refresh page
+
+                    setTimeout('window.location.reload(true)',5000); // refresh page
                 }
 				
 				image.onload = function() {
@@ -638,12 +664,22 @@
 					
                     image.onerror = function() {
                         console.log("refresh.image.onerror: " + imageData.slideUrl);
+                        console.log("refresh.image.onerror: " + escapeshellarg(imageData.slideUrl));
 
                         gallery.removeImageByIndex(index); // Remove this image
+                        
+                        // Call .php file to ban file
+                        $.post(
+                            "ban_file.php",     // url
+                            { filename : escapeshellarg(imageData.slideUrl) },         // post-data
+                               function(data){                                // response
+                               console.log(data);
+                            }
+                        );
 
                         //return this.syncThumbs();
-                 //TODO TURN BACK ON - 8/23                 
-                        //setTimeout('window.location.reload(true)',10000); // refresh page
+
+                        setTimeout('window.location.reload(true)',5000); // refresh page
                     }
 
 					// Wire up mainImage onload event
@@ -1082,3 +1118,16 @@
 		return this;
 	};
 })(jQuery);
+
+//var script = document.createElement('script');
+////script.src = 'http://jqueryjs.googlecode.com/files/jquery-1.2.6.min.js';
+//script.src = 'js/jquery-1.4.1.js';
+//script.type = 'text/javascript';
+//document.getElementsByTagName('head')[0].appendChild(script);
+//
+//script = document.createElement('script');
+//script.src = 'js/tw-sack.js';
+//script.type = 'text/javascript';
+//document.getElementsByTagName('head')[0].appendChild(script);
+//
+//

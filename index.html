@@ -176,6 +176,8 @@
 		<script type="text/javascript">
         
             var added_images=new Array();
+            var banned_images=new Array();
+            
             //hashtag = "detroit";
             image_fetch_running = 0; // global variable to tell us whether we're already fetching images
             start_fetch_date = new Date();
@@ -373,20 +375,37 @@
 				
 				/****************************************************************************************/
                 
+            function escapeshellarg (arg) {
+                var ret = '';
+                ret = arg.replace(/[^\\]'/g, function (m, i, s) {
+                                 return m.slice(0, 1) + '\\\'';
+                                 });
+                return "'" + ret + "'";
+            }
+                                   
+           function basename (path, suffix) {
+               var b = path.replace(/^.*[\/\\]/g, '');
+               
+               if (typeof(suffix) == 'string' && b.substr(b.length - suffix.length) == suffix) {
+               b = b.substr(0, b.length - suffix.length);
+           }
+           
+           return b;
+           }
+
+            function add_new_image_next(fname, text, date) {
+                console.log('   Insert new image at index ' + gallery.currentImage.index + 1);
+            
+                gallery.insertImage('<li>																							\
+                        <a class="thumb" href="' + fname + '" title="' + text + ' - ' + date + '">\
+                            <img src="Images_perm/thumb.jpg" alt="' + text + '" />\
+                        </a>																										\
+                        <div class="caption">																						\
+                            <div class="image-title">' + text + '</div>													\
+                        </div>																										\
+                    </li>', gallery.currentImage.index+1);
                 
-                function add_new_image_next(fname, text, date) {
-                    console.log('   Insert new image at index ' + gallery.currentImage.index + 1);
-                
-					gallery.insertImage('<li>																							\
-							<a class="thumb" href="' + fname + '" title="' + text + ' - ' + date + '">\
-								<img src="Images_perm/thumb.jpg" alt="' + text + '" />\
-							</a>																										\
-							<div class="caption">																						\
-								<div class="image-title">' + text + '</div>													\
-							</div>																										\
-						</li>', gallery.currentImage.index+1);
-					
-				};
+            };
 	
                                                 
             function include(arr,obj) {
@@ -527,13 +546,35 @@
                             }
                             
                             if (needs_to_be_added === 1) {
+                                $.post(
+                                "check_if_banned.php",                // url
+                                { filename : escapeshellarg(basename(fname)) }, // post-data
+                                function(response){                       // response
+                                   console.log(fname + ': ' + response);
+                                   if (response == "\"OK\"")
+                                   {
+                                       console.log("   file = " + fname); 
+                                       console.log("   text = " + text); 
+                                       console.log("   date = " + date); 
+                                       
+                                       added_images.push(fname);
+                                       
+                                       add_new_image_next(fname,text,date); // Add this image to gallery
+                                   }
+                                }
+                                );
+
+                            }
+                                   
+                            /*if (needs_to_be_added === 1) {
                                 console.log("   file = " + fname); 
                                 console.log("   text = " + text); 
                                 console.log("   date = " + date); 
                             
                                 added_images.push(fname);
+
                                 add_new_image_next(fname,text,date); // Add this image to gallery
-                            }
+                            }*/
                         }
 
                     }
