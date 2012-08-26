@@ -856,7 +856,9 @@ error_log("get_tweets()");
 get_tweets();
 
 error_log("get_emails()");
-get_emails();
+//get_emails();
+shell_exec("/usr/bin/php /Users/nathannantais/Sites/feedSlider/get_emails.php '".$hashtag."' '".$email."' '".$pass."' 'alert' >> /Users/nathannantais/Sites/feedSlider/paging.log &");
+//shell_exec("/usr/bin/php /Users/nathannantais/Sites/feedSlider/get_emails.php 'alert' >> /Users/nathannantais/Sites/feedSlider/paging.log &");
 
 error_log("get_local_photos()");
 $images = get_local_photos(); //Output the array elements containing the image file names
