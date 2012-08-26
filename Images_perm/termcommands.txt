@@ -1,4 +1,4 @@
-for file in *; do echo "<li><a class=\"thumb\" name=\"leaf\" href=\"Images_perm/$file\" title=\"\"><img src=\"Images_perm/thumb.jpg\" alt=\"\" /></a></li>" >> html.txt; done
+for file in *; do if [ -z "`echo "$file" | grep ".txt"`" ] && [ -f "${file}" ] && [ "thumb.jpg" != "${file}" ] && [ "tweet_bg.jpg" != "${file}" ]; then echo "<li><a class=\"thumb\" name=\"leaf\" href=\"Images_perm/$file\" title=\"\"><img src=\"Images_perm/thumb.jpg\" alt=\"\" /></a></li>" >> html.txt; fi; done
 
 for file in *.*; do if [ -f "Fetched/$file" ]; then echo "$file"; size1=`ls -l "$file" | awk '{print $5}'`; size2=`ls -l "Fetched/$file" | awk '{print $5}'`; if [ $size2 -gt $size1 ]; then cp "Fetched/$file" "$file"; echo "OVERWRITING, size1=$size1, size2=$size2"; fi; echo ""; fi; done
 

@@ -585,10 +585,10 @@ function get_emails() {
 
     /* try to connect */
     //$connection = imap_open($hostname,$username,$password) or die('Cannot connect to Gmail: ' . imap_last_error());
-    error_log("  imap_open");
+    //error_log("  imap_open");
     if (!$connection = imap_open($hostname,$username,$password)) {
         // Error
-        error_log("imap_open(".$hostname.",".$username.",".$password.") failed, with error: ".imap_last_error());
+        error_log("imap_open(".$hostname.",".$username.",".$password.") failed, with error: ".imap_last_error().", error: ".print_r(imap_errors()));
         return;
     }
 
@@ -605,7 +605,7 @@ function get_emails() {
             return $str;
     }
 
-    error_log("  message loop");
+    //error_log("  message loop");
     for($message_number = 1; $message_number <= $count; $message_number++) {
         error_log("  Message $message_number ... call imap_headerinfo");
         $header = imap_headerinfo($connection, $message_number);
@@ -640,7 +640,7 @@ function get_emails() {
             $date=date("Y-m-d H:i:s",$timeadjusted); // Build human-readable date in EST
             //echo $date."<br>";
 
-            error_log("   sender=$sender, subject=$subject, date=$date");
+            //error_log("   sender=$sender, subject=$subject, date=$date");
             
             // Search for attachments
             $attachments = array();
@@ -678,7 +678,7 @@ function get_emails() {
                         // Get attachment name
                         $filename=$attachments[$i]['filename'];
                         //echo $filename."<br>";
-                        error_log("    filename=$filename");
+                        //error_log("    filename=$filename");
                         
                         // Get extension
                         $extension = substr(strrchr($filename, '.'), 1);
@@ -702,14 +702,14 @@ function get_emails() {
                             
                             $img_local=$local_filename.".".$extension;
                             //echo $img_local."<br>";
-                            error_log("    img_local=$img_local");
+                            //error_log("    img_local=$img_local");
                             
                             // Save the image file if it doesnt exist
                             if (!file_exists($img_local)) { 
                                 //echo 'file needs to be written'."<br>";
                                 //echo imap_base64($attachments[$i]['attachment']);
 
-                                error_log("      img_local DOES NOT exist yet - get image start");
+                                error_log("      $img_local DOES NOT exist yet - get image start");
                                 $attachments[$i]['attachment'] = imap_fetchbody($connection, $message_number, $i+1);
                                 
                                 if($structure->parts[$i]->encoding == 3) { // 3 = BASE64
@@ -729,7 +729,7 @@ function get_emails() {
                             }
                             else {
                                 //echo 'Image file does not need to be written'."<br>";
-                                error_log("      img_local exists");
+                                //error_log("      img_local exists");
                             }
                             
                             // Save the Metadata if it doesn't exist

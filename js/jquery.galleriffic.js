@@ -343,8 +343,8 @@
                     gallery.removeImageByIndex(currentIndex); // Remove this image
 
                     //return this.syncThumbs();
-                 
-					setTimeout('window.location.reload(true)',10000); // refresh page
+                 //TODO TURN BACK ON - 8/23
+					//setTimeout('window.location.reload(true)',10000); // refresh page
                 }
 				
 				image.onload = function() {
@@ -642,8 +642,8 @@
                         gallery.removeImageByIndex(index); // Remove this image
 
                         //return this.syncThumbs();
-                 
-                        setTimeout('window.location.reload(true)',10000); // refresh page
+                 //TODO TURN BACK ON - 8/23                 
+                        //setTimeout('window.location.reload(true)',10000); // refresh page
                     }
 
 					// Wire up mainImage onload event
