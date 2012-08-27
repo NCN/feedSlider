@@ -7,40 +7,50 @@
 
     //set_time_limit(300); // 5 minutes timeout time
 
-    if( $_REQUEST["filename"] )
+    error_log("check_if_banned() - return list of banned files");
+
+    
+    
+    class Image
     {
-        $filename = $_REQUEST['filename'];
-        error_log("check_if_banned() - filename: $filename");
+        // This is the CLASS DEFINITION (everything in the curly brackets).
         
-        $myFile = "banned_images.txt";
-
-        $stringData = "$filename\n";
+        // $myVar is DECLARED, but it is not INITIALIZED (assigned a value).
+        public $filename;
         
-        $file = new SplFileObject($myFile);
-        //$file->setFlags(SplFileObject::DROP_NEW_LINES);
+        public function __construct($value = 'What?') {
+            $this->setfilename($value); // $filename will now be INITIALIZED
+        }
         
-        $match = false;
-        foreach($file as $line){
-            if( false !== stripos( $line, $stringData ) ){
-                $match = true;
-                break;
+        public function setfilename($value) {
+            if(!is_string($value)) {
+                $value = (string)'Non-String type passed in argument';
             }
-        }
-        
-        if( true === $match ){
-            //we found a match
-            error_log("check_if_banned() - $filename IS BANNED");
-            echo json_encode("BANNED");
-        } else {
-            //No Match
-            //error_log("check_if_banned() - $filename is not banned");
-            echo json_encode("OK");
-        }
-    }
-    else {
-        error_log("check_if_banned() - no filename specified");
-        echo "check_if_banned() - no filename specified";
+            
+            $this->filename = $value;
+        }        
     }
 
+    
+    
+    
+    $myFile = "banned_images.txt";
+
+    $file = new SplFileObject($myFile);
+
+    $banned_files = array();
+        
+    $match = false;
+    $i = 0;
+    foreach($file as $line) {
+        if (strlen($line) > 0) {
+            $mf = new Image($line);
+            $banned_files[] = $mf;
+            $i++;
+        }
+    }
+        
+    error_log("check_if_banned() - $i banned files");
+    echo json_encode($banned_files);
 
 ?>

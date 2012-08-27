@@ -459,10 +459,40 @@
                 //$('h1#title').replaceWith('<h1 id="title">' + unescape(descr) + '</h1>');  
                 //console.log(descr);
                 
-                
-                fetchImages();
+               check_for_banned_images();
+               setTimeout(fetchImages, 10000);
+                //fetchImages();
             }
 
+           function check_for_banned_images() {
+               $.post(
+                      "check_if_banned.php",                // url
+                      function(response){                       // response
+                      if (response.length > 0) {
+                      console.log(response); // Print out whole response
+                      var obj = jQuery.parseJSON(response);
+                      
+                      for (var i = 0; i < obj.length; i++) {
+                      var object = obj[i];
+                      for (property in object) {
+                      var value = object[property];
+                      console.log("  " + property + "=" + value.replace(/(\r\n|\n|\r)/gm,"")); // This alerts "id=1", "created=2010-03-19", etc..
+                      if (property === "filename") {
+                      fname=value.replace(/(\r\n|\n|\r)/gm,"")
+                      // Check if we've already banned this image
+                      if (!include(banned_images, fname)) 
+                      { 
+                      console.log("  BANNED image: " + fname);
+                      banned_images.push(fname);
+                      }
+                      }
+                      }
+                      }
+                      }
+                      }
+                      );
+           }
+                                   
             // Function to fetch new images by calling imageFetch.php
             function fetchImages() {
             
@@ -489,6 +519,8 @@
                         return;
                     }
                 }
+                
+                check_for_banned_images();
                 
                 var ajax = new sack();
                 ajax.method = "GET";  // Can also be set to POST
@@ -533,8 +565,14 @@
                                     // Check if we've already added this image
                                     if (!include(added_images, fname)) 
                                     { 
-                                        console.log("  NEW image");
-                                        needs_to_be_added=1;
+                                       console.log("  NEW image: " + fname);
+                                       if (!include(banned_images, "'" + fname + "'")) 
+                                       { 
+                                           needs_to_be_added = 1;
+                                       }
+                                       else {
+                                           console.log("    Image was BANNED");
+                                       }
                                     }
                                 }
                                 else if (property === "text") {
@@ -546,27 +584,6 @@
                             }
                             
                             if (needs_to_be_added === 1) {
-                                $.post(
-                                "check_if_banned.php",                // url
-                                { filename : escapeshellarg(basename(fname)) }, // post-data
-                                function(response){                       // response
-                                   console.log(fname + ': ' + response);
-                                   if (response == "\"OK\"")
-                                   {
-                                       console.log("   file = " + fname); 
-                                       console.log("   text = " + text); 
-                                       console.log("   date = " + date); 
-                                       
-                                       added_images.push(fname);
-                                       
-                                       add_new_image_next(fname,text,date); // Add this image to gallery
-                                   }
-                                }
-                                );
-
-                            }
-                                   
-                            /*if (needs_to_be_added === 1) {
                                 console.log("   file = " + fname); 
                                 console.log("   text = " + text); 
                                 console.log("   date = " + date); 
@@ -574,7 +591,7 @@
                                 added_images.push(fname);
 
                                 add_new_image_next(fname,text,date); // Add this image to gallery
-                            }*/
+                            }
                         }
 
                     }
